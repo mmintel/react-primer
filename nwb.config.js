@@ -1,18 +1,20 @@
+const path = require('path');
+
 module.exports = {
   type: 'react-component',
   npm: {
     esModules: true,
-    umd: false
+    umd: false,
   },
   webpack: {
     aliases: {
-      'components': path.resolve('src/components'),
+      components: path.resolve('src/components'),
     },
-    loaders: {
+    rules: {
       'sass-css': {
         modules: true,
-        localIdentName: '[local]__[hash:base64:5]'
-      }
+        localIdentName: '[local]__[hash:base64:5]',
+      },
     },
-  }
-}
+  },
+};

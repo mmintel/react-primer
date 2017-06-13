@@ -10,16 +10,15 @@ const Button = ({
   children,
   ...props
 }) => {
-  const CustomComponent = component || (props.href ? 'a' : 'button');
-  const componentClass = classNames(styles.button, className);
+  const Component = component || (props.href ? 'a' : 'button');
   return (
-    <CustomComponent
-      className={componentClass}
+    <Component
+      className={classNames(styles.button, className)}
       role={props.href && 'button'}
       {...props}
     >
       {children}
-    </CustomComponent>
+    </Component>
   );
 };
 
