@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
-import styles from './styles.scss';
+import classnames from 'classnames';
+import { connect } from 'react-fela';
 import { themr } from 'react-css-themr';
 
 const Button = ({
   component,
+  styles,
   className,
   children,
   ...props
@@ -13,7 +14,7 @@ const Button = ({
   const Component = component || (props.href ? 'a' : 'button');
   return (
     <Component
-      className={classNames(styles.button, className)}
+      className={classnames(styles.button, className)}
       role={props.href && 'button'}
       {...props}
     >
@@ -33,4 +34,10 @@ Button.defaultProps = {
   size: 'medium',
 };
 
-export default Button;
+const button = props => ({
+  appearance: 'none',
+});
+
+export default connect({
+  button,
+})(Button);
