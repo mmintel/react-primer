@@ -1,10 +1,11 @@
-import { action, linkTo, setAddon, storiesOf } from '@storybook/react';
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { linkTo, setAddon, storiesOf } from '@storybook/react';
 
 import Button from 'components/button';
 import PropsAddon from 'storybook-addon-props-fela';
 import React from 'react';
 import Welcome from './Welcome';
+import { action } from '@storybook/addon-actions';
 import initFelaProvider from './initFela';
 
 const FelaProvider = initFelaProvider();
