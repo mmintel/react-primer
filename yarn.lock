@@ -1421,6 +1421,10 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
+bowser@^1.6.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/bowser/-/bowser-1.7.0.tgz#169de4018711f994242bff9a8009e77a1f35e003"
+
 brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
@@ -2948,6 +2952,36 @@ fela-dom@^5.0.2:
     fela-tools "^5.0.1"
     fela-utils "^5.0.1"
 
+fela-plugin-custom-property@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/fela-plugin-custom-property/-/fela-plugin-custom-property-5.0.1.tgz#b5f8bbe58db8459e5cb343e9dbb4cc3e26ca7908"
+  dependencies:
+    css-in-js-utils "^1.0.3"
+    fela-utils "^5.0.1"
+
+fela-plugin-fallback-value@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/fela-plugin-fallback-value/-/fela-plugin-fallback-value-5.0.1.tgz#38bd2f926b34a077bf8f03a8eba0b85345edcbc5"
+  dependencies:
+    css-in-js-utils "^1.0.3"
+    fela-utils "^5.0.1"
+
+fela-plugin-placeholder-prefixer@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/fela-plugin-placeholder-prefixer/-/fela-plugin-placeholder-prefixer-5.0.1.tgz#93eb3a84497e8cd22dfb39c8e34726efdb565141"
+  dependencies:
+    fela-plugin-custom-property "^5.0.1"
+    fela-utils "^5.0.1"
+
+fela-plugin-prefixer@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/fela-plugin-prefixer/-/fela-plugin-prefixer-5.0.1.tgz#a65127af265135e132193cd486fd1de22332a6a8"
+  dependencies:
+    css-in-js-utils "^1.0.3"
+    fela-plugin-fallback-value "^5.0.1"
+    fela-utils "^5.0.1"
+    inline-style-prefixer "^3.0.0"
+
 fela-tools@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.0.1.tgz#3cb93239c39cb574b6d6b43a718178ff3173dde4"
@@ -3569,6 +3603,13 @@ inherits@2.0.1:
 ini@~1.3.0:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
+
+inline-style-prefixer@^3.0.0:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-3.0.6.tgz#b27fe309b4168a31eaf38c8e8c60ab9e7c11731f"
+  dependencies:
+    bowser "^1.6.0"
+    css-in-js-utils "^1.0.3"
 
 inquirer@3.0.6:
   version "3.0.6"
@@ -4273,7 +4314,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@4.x.x, lodash@^4.0.0, lodash@^4.0.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.1:
+lodash@4.17.4, lodash@4.x.x, lodash@^4.0.0, lodash@^4.0.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -6334,6 +6375,12 @@ stackframe@^0.3.1:
 "statuses@>= 1.3.1 < 2", statuses@~1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
+
+storybook-addon-props-fela@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/storybook-addon-props-fela/-/storybook-addon-props-fela-1.0.3.tgz#b90a0b944d35eaa5b8439fce5428dd4db6098e1c"
+  dependencies:
+    lodash "4.17.4"
 
 stream-browserify@^2.0.1:
   version "2.0.1"
