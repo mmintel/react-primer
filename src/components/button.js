@@ -36,6 +36,11 @@ Button.defaultProps = {
 
 const button = props => ({
   appearance: 'none',
+  background: 'none',
+  border: 'none',
+  display: 'inline-block',
+  fontSize: 'inherit',
+  color: 'inherit',
 });
 
 export default connect({

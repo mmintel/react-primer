@@ -1,4 +1,5 @@
-import { action, linkTo, setAddon, storiesOf } from '@kadira/storybook';
+import { action, linkTo, setAddon, storiesOf } from '@storybook/react';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 
 import Button from 'components/button';
 import PropsAddon from 'storybook-addon-props-fela';
@@ -16,10 +17,20 @@ storiesOf('Welcome', module)
   ));
 
 storiesOf('Button', module)
+  .addDecorator(withKnobs)
   .addDecorator(FelaProvider)
-  .addWithProps('with text', () => (
-    <Button onClick={action('clicked')}>Hello Button</Button>
-  ))
+  .addWithProps('with text', () => {
+    const disabled = boolean('disabled', false);
+    const label = text('Text', 'I am a button');
+    return (
+      <Button
+        disabled={disabled}
+        onClick={action('clicked')}
+      >
+        {label}
+      </Button>
+    );
+  })
   .add('with some emoji', () => (
     <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
   ));
