@@ -10,7 +10,7 @@ setOptions({
   url: 'https://example.com',
   goFullScreen: false,
   showLeftPanel: true,
-  showDownPanel: false,
+  showDownPanel: true,
   showSearchBox: false,
   downPanelInRight: true,
   sortStoriesByKind: false,

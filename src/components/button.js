@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
-import { themr } from 'react-css-themr';
 
 const Button = ({
   component,
@@ -41,6 +40,10 @@ const button = props => ({
   display: 'inline-block',
   fontSize: 'inherit',
   color: 'inherit',
+  cursor: 'pointer',
+  '&[disabled]': {
+    cursor: 'not-allowed',
+  },
 });
 
 export default connect({
