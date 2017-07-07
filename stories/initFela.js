@@ -2,6 +2,7 @@
 import { Provider } from 'react-fela';
 import React from 'react';
 import { createRenderer } from 'fela';
+import fallbackValue from 'fela-plugin-fallback-value'
 import placeholderPrefixer from 'fela-plugin-placeholder-prefixer';
 import prefixer from 'fela-plugin-prefixer';
 
@@ -9,6 +10,7 @@ const config = {
   plugins: [
     placeholderPrefixer(),
     prefixer(),
+    fallbackValue(),
   ],
 };
 const renderer = createRenderer(config);

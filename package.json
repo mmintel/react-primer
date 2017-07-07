@@ -21,9 +21,10 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "fela": "^5.0.1",
-    "fela-plugin-placeholder-prefixer": "^5.0.1",
-    "fela-plugin-prefixer": "^5.0.1",
+    "fela": "^5.0.2",
+    "fela-plugin-fallback-value": "^5.0.3",
+    "fela-plugin-placeholder-prefixer": "^5.0.2",
+    "fela-plugin-prefixer": "^5.0.3",
     "modularscale-js": "^3.0.1",
     "react-css-themr": "^2.1.2"
   },
@@ -43,6 +44,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-fela": "^5.0.3",
+    "react-icons": "^2.2.5",
     "storybook-addon-props-fela": "^1.0.3"
   },
   "author": "",

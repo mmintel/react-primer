@@ -2,14 +2,14 @@
 
 [![Travis][build-badge]][build] [![npm package][npm-badge]][npm] [![Coveralls][coveralls-badge]][coveralls]
 
-Describe react-primer here.
-
 # Requirements
 
 - fela
 - react-fela
-- fela-plugin-placeholder-prefixer
-- fela-plugin-prefixer
+
+# Golden rules
+
+1. Never use shorthand CSS rules in style property because they can't be merged with existing rules.
 
 [build]: https://travis-ci.org/user/repo
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
