@@ -1,4 +1,4 @@
-import { boolean, object, select, text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
 
 import Button from 'components/button';
 import React from 'react';
@@ -15,7 +15,7 @@ export default storiesOf('Button', module)
   .add('with text', () => {
     const disabled = boolean('Disabled', false);
     const block = boolean('Block', false);
-    const size = select('Size', ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'massive'], 'medium');
+    const size = number('Size', 0)
     const label = text('Text', 'I am a button');
     const href = text('Href', 'http://...');
     const style = object('Style', {

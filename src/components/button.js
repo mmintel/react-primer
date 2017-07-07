@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import _ from 'lodash';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
 import ms from 'modularscale';
@@ -52,7 +53,7 @@ Button.propTypes = {
   before: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   after: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
-  size: PropTypes.oneOf(['mini', 'tiny', 'small', 'medium', 'large', 'big', 'massive']),
+  size: PropTypes.number,
   className: PropTypes.string,
   style: PropTypes.object,
   textStyle: PropTypes.object,
@@ -64,7 +65,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   component: 'button',
-  size: 'medium',
+  size: 0,
 };
 
 const button = ({block, before, after, disabled, style}) => ({
@@ -82,6 +83,7 @@ const button = ({block, before, after, disabled, style}) => ({
   color: 'inherit',
   cursor: 'pointer',
   userSelect: 'none',
+  padding: 0,
   ...block && ({
     display: before || after ? 'flex' : 'block',
     width: '100%',
@@ -104,71 +106,43 @@ const button = ({block, before, after, disabled, style}) => ({
   ...style,
 });
 
-const text = ({before, after, size}) => ({
-  display: 'block',
-  ...(before || after) && ({
-    flex: 1,
-  }),
-  ...size === 'mini' && ({
-    paddingTop: `${ms(-4)}rem`,
-    paddingBottom: `${ms(-4)}rem`,
-    paddingLeft: `${ms((before || after) ? -4 : -2 )}rem`,
-    paddingRight: `${ms((before || after) ? -4 : -2 )}rem`,
-    fontSize: `${ms(-1)}rem`,
-  }),
-  ...size === 'tiny' && ({
-    paddingTop: `${ms(-3)}rem`,
-    paddingBottom: `${ms(-3)}rem`,
-    paddingLeft: `${ms((before || after) ? -3 : -1)}rem`,
-    paddingRight: `${ms((before || after) ? -3 : -1)}rem`,
-    fontSize: `${ms(-1)}rem`,
-  }),
-  ...size === 'small' && ({
-    paddingTop: `${ms(-2)}rem`,
-    paddingBottom: `${ms(-2)}rem`,
-    paddingLeft: `${ms((before || after) ? -2 : 0)}rem`,
-    paddingRight: `${ms((before || after) ? -2 : 0)}rem`,
-    fontSize: `${ms(-1)}rem`,
-  }),
-  ...(!size || size === 'medium') && ({
-    paddingTop: `${ms(-1)}rem`,
-    paddingBottom: `${ms(-1)}rem`,
-    paddingLeft: `${ms((before || after) ? -1 : 1)}rem`,
-    paddingRight: `${ms((before || after) ? -1 : 1)}rem`,
-    fontSize: `${ms(0)}rem`,
-  }),
-  ...size === 'large' && ({
-    paddingTop: `${ms(0)}rem`,
-    paddingBottom: `${ms(0)}rem`,
-    paddingLeft: `${ms((before || after) ? 0 : 2)}rem`,
-    paddingRight: `${ms((before || after) ? 0 : 2)}rem`,
-    fontSize: `${ms(1)}rem`,
-  }),
-  ...size === 'big' && ({
-    paddingTop: `${ms(1)}rem`,
-    paddingBottom: `${ms(1)}rem`,
-    paddingLeft: `${ms((before || after) ? 1 : 3)}rem`,
-    paddingRight: `${ms((before || after) ? 1 : 3)}rem`,
-    fontSize: `${ms(2)}rem`,
-  }),
-  ...size === 'massive' && ({
-    paddingTop: `${ms(2)}rem`,
-    paddingBottom: `${ms(2)}rem`,
-    paddingLeft: `${ms(4)}rem`,
-    paddingRight: `${ms(4)}rem`,
-    fontSize: `${ms(3)}rem`,
-  }),
-});
+const text = ({ before, after, size }) => {
+  const s = size || 0;
+  return {
+    display: 'block',
+    ...(before || after) && ({
+      flex: 1,
+    }),
+    ...(s || s === 0) && ({
+      paddingTop: `${ms(s)}rem`,
+      paddingBottom: `${ms(s)}rem`,
+      paddingLeft: `${ms((before || after) ? s : s * 2)}rem`,
+      paddingRight: `${ms((before || after) ? s : s * 2)}rem`,
+      fontSize: `${ms(_.clamp(s, -1, s))}rem`,
+    })
+  }
+}
 
-const beforeAndAfter = props => ({
-  
-});
+const beforeAndAfter = ({ size }) => {
+  const s = size || 0;
+  return {
+    ...(s || s === 0) && ({
+      paddingTop: `${ms(s)}rem`,
+      paddingBottom: `${ms(s)}rem`,
+      paddingLeft: `${ms(s / 2)}rem`,
+      paddingRight: `${ms(s / 2)}rem`,
+      fontSize: `${ms(_.clamp(s, -1, s))}rem`,
+    })
+  }
+};
 
 const before = props => ({
+  ...beforeAndAfter(props),
   ...props.beforeStyle,
 });
 
 const after = props => ({
+  ...beforeAndAfter(props),
   ...props.afterStyle,
 });
 
