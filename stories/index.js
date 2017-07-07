@@ -1,5 +1,5 @@
 import { addDecorator, linkTo, setAddon, storiesOf } from '@storybook/react';
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, object, select, text, withKnobs } from '@storybook/addon-knobs';
 
 import Button from 'components/button';
 import PropsAddon from 'storybook-addon-props-fela';
@@ -21,17 +21,27 @@ addDecorator(FelaProvider);
 
 storiesOf('Button', module)
   .add('with text', () => {
-    const disabled = boolean('disabled', false);
+    const disabled = boolean('Disabled', false);
+    const block = boolean('Block', false);
+    const size = select('Size', ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'massive'], 'medium');
     const label = text('Text', 'I am a button');
+    const href = text('Href', 'http://...');
+    const style = object('Style', {
+      backgroundColor: '#2185d0',
+      '&:hover': {
+        backgroundColor: '#1678c2',
+      },
+    });
     return (
       <Button
         disabled={disabled}
+        block={block}
+        size={size}
+        href={href}
+        style={style}
         onClick={action('clicked')}
       >
         {label}
       </Button>
     );
-  })
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
-  ));
+  });

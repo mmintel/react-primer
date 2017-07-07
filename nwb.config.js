@@ -7,9 +7,7 @@ module.exports = {
     umd: false,
   },
   webpack: {
-    aliases: {
-      components: path.resolve('src/components'),
-    },
+    modules: [path.resolve('src'), path.resolve('node_modules')],
     rules: {
       'sass-css': {
         modules: true,
