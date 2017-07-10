@@ -23,10 +23,10 @@ const Button = ({
 }) => {
   let Component = component;
   if (props.href) {
-    Component = props.href.length > 0 ? 'a' : 'button';
+    Tag = props.href.length > 0 ? 'a' : 'button';
   }
   return (
-    <Component
+    <Tag
       className={classnames(styles.button, className)}
       role={props.href && 'button'}
       {...props}
@@ -44,7 +44,7 @@ const Button = ({
           {after}
         </span>
       }
-    </Component>
+    </Tag>
   );
 };
 
@@ -132,8 +132,8 @@ const beforeAndAfter = ({ size }) => {
       paddingLeft: `${ms(s / 2)}rem`,
       paddingRight: `${ms(s / 2)}rem`,
       fontSize: `${ms(_.clamp(s, -1, s))}rem`,
-    })
-  }
+    }),
+  };
 };
 
 const before = props => ({
