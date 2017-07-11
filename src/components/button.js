@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import _ from 'lodash';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
-import ms from 'modularscale';
 
 const Button = ({
-  component,
+  tag,
   styles,
   style,
   textStyle,
@@ -21,7 +19,7 @@ const Button = ({
   after,
   ...props
 }) => {
-  let Component = component;
+  let Tag = tag;
   if (props.href) {
     Tag = props.href.length > 0 ? 'a' : 'button';
   }
@@ -52,7 +50,7 @@ Button.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   before: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   after: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   size: PropTypes.number,
   className: PropTypes.string,
   style: PropTypes.object,
@@ -64,7 +62,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  component: 'button',
+  tag: 'button',
   size: 0,
 };
 
@@ -114,11 +112,7 @@ const text = ({ before, after, size }) => {
       flex: 1,
     }),
     ...(s || s === 0) && ({
-      paddingTop: `${ms(s)}rem`,
-      paddingBottom: `${ms(s)}rem`,
-      paddingLeft: `${ms((before || after) ? s : s * 2)}rem`,
-      paddingRight: `${ms((before || after) ? s : s * 2)}rem`,
-      fontSize: `${ms(_.clamp(s, -1, s))}rem`,
+
     })
   }
 }
@@ -127,11 +121,7 @@ const beforeAndAfter = ({ size }) => {
   const s = size || 0;
   return {
     ...(s || s === 0) && ({
-      paddingTop: `${ms(s)}rem`,
-      paddingBottom: `${ms(s)}rem`,
-      paddingLeft: `${ms(s / 2)}rem`,
-      paddingRight: `${ms(s / 2)}rem`,
-      fontSize: `${ms(_.clamp(s, -1, s))}rem`,
+
     }),
   };
 };
