@@ -27,7 +27,8 @@
     "fela-plugin-prefixer": "^5.0.3",
     "lodash": "^4.17.4",
     "modularscale-js": "^3.0.1",
-    "react-css-themr": "^2.1.2"
+    "react-css-themr": "^2.1.2",
+    "react-motion": "^0.5.0"
   },
   "peerDependencies": {
     "react": "15.x"
