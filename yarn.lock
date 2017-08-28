@@ -2855,12 +2855,12 @@ fd-slicer@~1.0.1:
   dependencies:
     pend "~1.2.0"
 
-fela-dom@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-5.0.2.tgz#8c10ce9ff2872eece4eb27fcbf5950eba1c76afa"
+fela-dom@^5.0.7:
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-5.0.7.tgz#c423d0cc24804efbdfa620a8a89405df9084ccd1"
   dependencies:
-    fela-tools "^5.0.1"
-    fela-utils "^5.0.1"
+    fela-tools "^5.0.6"
+    fela-utils "^6.0.0"
 
 fela-plugin-custom-property@^5.0.2:
   version "5.0.2"
@@ -2892,26 +2892,32 @@ fela-plugin-prefixer@^5.0.3:
     fela-utils "^5.0.2"
     inline-style-prefixer "^3.0.0"
 
-fela-tools@^5.0.1, fela-tools@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.0.2.tgz#6fe7d2761d992cfe78d817dbd25ec34fdadbb137"
+fela-tools@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.0.6.tgz#001ccca06e69328ffc7cbb48789164f033a2a112"
   dependencies:
     css-in-js-utils "^1.0.3"
-    fela-utils "^5.0.2"
+    fela-utils "^6.0.0"
 
-fela-utils@^5.0.1, fela-utils@^5.0.2:
+fela-utils@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-5.0.2.tgz#e750c9de8b78eb0ea53a3f7671e573ec83ef1e5a"
   dependencies:
     css-in-js-utils "^1.0.3"
 
-fela@^5.0.1, fela@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/fela/-/fela-5.0.2.tgz#56615acc241603c641cbc51fc45d56f7d8792fc3"
+fela-utils@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-6.0.0.tgz#b765e9de8f9c39745e466b0daee6a31a6341ebdb"
   dependencies:
     css-in-js-utils "^1.0.3"
-    fela-tools "^5.0.2"
-    fela-utils "^5.0.2"
+
+fela@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/fela/-/fela-5.1.1.tgz#9775b4e6df30fa0225408cf8f1952003e17292e8"
+  dependencies:
+    css-in-js-utils "^1.0.3"
+    fela-tools "^5.0.6"
+    fela-utils "^6.0.0"
 
 figures@2.0.0, figures@^2.0.0:
   version "2.0.0"
@@ -5605,12 +5611,12 @@ react-dom@^15.5.4:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
-react-fela@^5.0.3:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/react-fela/-/react-fela-5.0.3.tgz#04f3f17b0039c8482adddc7df61c69221f3d9ee1"
+react-fela@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-fela/-/react-fela-5.2.1.tgz#b7bbc7e5187029f94302fb12e842f7262a54d1aa"
   dependencies:
-    fela "^5.0.1"
-    fela-dom "^5.0.2"
+    fela "^5.1.1"
+    fela-dom "^5.0.7"
     prop-types "^15.5.8"
 
 react-html-attributes@^1.3.0:
@@ -6389,6 +6395,10 @@ storybook-addon-props-fela@^1.0.3:
   resolved "https://registry.yarnpkg.com/storybook-addon-props-fela/-/storybook-addon-props-fela-1.0.3.tgz#b90a0b944d35eaa5b8439fce5428dd4db6098e1c"
   dependencies:
     lodash "4.17.4"
+
+storybook@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/storybook/-/storybook-0.0.1.tgz#0d2789169446b657f41099d263786c8cfaf354bb"
 
 stream-browserify@^2.0.1:
   version "2.0.1"
