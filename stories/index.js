@@ -4,6 +4,8 @@ import './components/dimmer';
 import './components/image';
 import './components/loading';
 import './components/headline';
+import './components/expand';
+import './components/accordion';
 
 import { addDecorator, linkTo, setAddon, storiesOf } from '@storybook/react';
 
