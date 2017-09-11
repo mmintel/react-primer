@@ -6,9 +6,9 @@ class Accordion extends React.Component {
     activeItem: 0,
   }
 
-  handleClick = (e, index) => {
+  handleToggle = (e, data) => {
     this.setState({
-      activeItem: index,
+      activeItem: data.index,
     })
   }
 
@@ -21,7 +21,7 @@ class Accordion extends React.Component {
      (child, index) => React.cloneElement(child, {
        active: activeItem === index,
        index,
-       onToggle: this.handleClick,
+       onToggle: this.handleToggle,
      })
     );
 

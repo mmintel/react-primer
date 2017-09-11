@@ -2,17 +2,50 @@ import React from 'react';
 import cn from 'classnames';
 import { connect } from 'react-fela';
 
-class Expand extends React.Component {
+export default class Expand extends React.Component {
   state = {
     active: false,
   }
 
+  handleToggle = (e, index) => {
+    this.setState({
+      active: !this.state.active,
+    });
+    this.props.onToggle && this.props.onToggle(e, {
+      index,
+      active: this.state.active,
+    });
+  }
+
   render() {
-    const { tag = 'div', styles, children, className, active, index, toggler, onToggle, ...props } = this.props;
+    const { onToggle, ...props } = this.props;
+    return (
+      <View onToggle={this.handleToggle} active={this.state.active} {...props } />
+    );
+  }
+}
+
+
+const toggler = props => ({
+  cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+});
+
+const content = props => ({
+  display: props.active ? 'block' : 'none',
+});
+
+const View = connect({
+  toggler,
+  content,
+})(
+  ({ tag = 'div', styles, children, className, active, index, toggler, onToggle, ...props }) => {
     const Tag = tag;
 
-    return(
-      <Tag className={cn(styles.expand, className)} {...props}>
+    return (
+      <Tag className={cn(className)} {...props}>
         <div onClick={e => onToggle(e, index)} className={styles.toggler}>
           { toggler }
         </div>
@@ -20,25 +53,6 @@ class Expand extends React.Component {
           { children }
         </div>
       </Tag>
-    )
+    );
   }
-}
-
-const expand = props => ({
-  borderBottom: '1px solid #e4e4e4',
-});
-
-const toggler = (props, state) => ({
-  cursor: props.active ? 'auto' : 'pointer',
-})
-
-const content = props => ({
-  display: props.active ? 'block' : 'none',
-  paddingBottom: '12px',
-});
-
-export default connect({
-  expand,
-  toggler,
-  content,
-})(Expand);
+);
