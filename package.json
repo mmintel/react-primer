@@ -21,33 +21,24 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "fela": "^5.2.0",
-    "fela-plugin-fallback-value": "^5.0.8",
-    "fela-plugin-placeholder-prefixer": "^5.0.7",
-    "fela-plugin-prefixer": "^5.0.8",
-    "lodash": "^4.17.4",
     "modularscale-js": "^3.0.1",
     "react-css-themr": "^2.1.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-fela": "^5.2.1",
-    "react-icons": "^2.2.5",
-    "react-motion": "^0.5.0"
+    "react-motion": "^0.5.1"
   },
   "peerDependencies": {
     "react": "15.x"
   },
   "devDependencies": {
-    "@storybook/addon-knobs": "^3.1.5",
-    "@storybook/addon-options": "^3.1.5",
-    "@storybook/react": "^3.1.5",
+    "@kadira/storybook": "^2.21.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
     "nwb": "0.16.x",
-    "storybook-addon-props-fela": "^1.0.3"
+    "nwb-sass": "^0.8.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
   },
   "author": "",
   "homepage": "",
