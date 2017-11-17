@@ -1,6 +1,6 @@
 import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
 
-import Expand from 'components/expand';
+import { Expand } from '../../src';
 import React from 'react';
 import initFelaProvider from '../initFela';
 import { storiesOf } from '@storybook/react';

@@ -1,6 +1,6 @@
 import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
 
-import Dimmer from 'components/dimmer';
+import { Dimmer } from '../../src';
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import initFelaProvider from '../initFela';

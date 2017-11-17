@@ -1,6 +1,6 @@
 import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
 
-import Image from 'components/image';
+import { Image } from '../../src';
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import initFelaProvider from '../initFela';

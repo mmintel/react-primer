@@ -1,6 +1,6 @@
 import { color, withKnobs } from '@storybook/addon-knobs';
 
-import Loading from 'components/loading';
+import { Loading } from '../../src';
 import React from 'react';
 import initFelaProvider from '../initFela';
 import { storiesOf } from '@storybook/react';

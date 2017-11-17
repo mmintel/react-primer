@@ -1,6 +1,6 @@
 import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
 
-import Button from 'components/button';
+import { Button } from '../../src';
 import React from 'react';
 import TestIcon from 'react-icons/lib/md/ac-unit';
 import { action } from '@storybook/addon-actions';

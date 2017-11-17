@@ -1,10 +1,8 @@
-import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
-
-import Accordion from 'components/accordion';
-import Expand from 'components/expand';
 import React from 'react';
-import initFelaProvider from '../initFela';
+import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
+import { Accordion, Expand } from '../../src';
+import initFelaProvider from '../initFela';
 
 const FelaProvider = initFelaProvider();
 

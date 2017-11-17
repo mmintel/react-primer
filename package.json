@@ -21,24 +21,29 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "fela": "^6.0.5",
+    "fela-plugin-fallback-value": "^5.0.14",
+    "fela-plugin-placeholder-prefixer": "^5.0.14",
+    "fela-plugin-prefixer": "^5.0.14",
     "modularscale-js": "^3.0.1",
-    "react-css-themr": "^2.1.2",
-    "react-motion": "^0.5.1"
-  },
-  "peerDependencies": {
-    "react": "15.x"
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-fela": "^6.1.0",
+    "react-motion": "^0.5.2",
+    "storybook-addon-props-fela": "^1.0.3"
   },
   "devDependencies": {
-    "@kadira/storybook": "^2.21.0",
+    "@storybook/addon-actions": "^3.2.16",
+    "@storybook/addon-knobs": "^3.2.16",
+    "@storybook/addon-options": "^3.2.16",
+    "@storybook/react": "^3.2.16",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "nwb": "0.16.x",
-    "nwb-sass": "^0.8.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-icons": "^2.2.7",
+    "nwb": "^0.19.2"
   },
   "author": "",
   "homepage": "",
