@@ -7,10 +7,10 @@ import { storiesOf } from '@storybook/react';
 
 const FelaProvider = initFelaProvider();
 
-export default storiesOf('Container', module)
+export default storiesOf('Elements', module)
   .addDecorator(withKnobs)
   .addDecorator(FelaProvider)
-  .add('with text', () => {
+  .add('Container', () => {
     return (
       <Container>
         <p>

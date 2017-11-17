@@ -7,10 +7,10 @@ import { storiesOf } from '@storybook/react';
 
 const FelaProvider = initFelaProvider();
 
-export default storiesOf('Loading', module)
+export default storiesOf('Elements', module)
   .addDecorator(withKnobs)
   .addDecorator(FelaProvider)
-  .add('default', () => {
+  .add('Loading', () => {
     const c = color('Color', '#333');
     return (
       <Loading color={c} />

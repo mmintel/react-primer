@@ -7,10 +7,10 @@ import { storiesOf } from '@storybook/react';
 
 const FelaProvider = initFelaProvider();
 
-export default storiesOf('Expand', module)
+export default storiesOf('Elements', module)
   .addDecorator(withKnobs)
   .addDecorator(FelaProvider)
-  .add('with text', () => {
+  .add('Expand', () => {
     return (
       <Expand toggler={<h2>Click me to expand</h2>}>
         <p>

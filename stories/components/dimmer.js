@@ -8,10 +8,10 @@ import { storiesOf } from '@storybook/react';
 
 const FelaProvider = initFelaProvider();
 
-export default storiesOf('Dimmer', module)
+export default storiesOf('Elements', module)
   .addDecorator(withKnobs)
   .addDecorator(FelaProvider)
-  .add('default', () => {
+  .add('Dimmer', () => {
     const enabled = boolean('Enabled', true);
     return (
       <Dimmer enabled={enabled} />

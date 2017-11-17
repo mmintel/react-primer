@@ -6,10 +6,10 @@ import initFelaProvider from '../initFela';
 
 const FelaProvider = initFelaProvider();
 
-export default storiesOf('Accordion', module)
+export default storiesOf('Elements', module)
   .addDecorator(withKnobs)
   .addDecorator(FelaProvider)
-  .add('with text', () => {
+  .add('Accordion', () => {
     return (
       <Accordion>
         <Expand toggler={<h2>Toggle first paragraph</h2>}>
