@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
+import { combineRules } from 'fela';
+import ms from 'modularscale-js';
 
 const Button = ({
   tag,
@@ -11,10 +13,10 @@ const Button = ({
   beforeStyle,
   afterStyle,
   size,
+  calculateSize = n => ms(n),
   className,
   children,
   block,
-  disabled,
   before,
   after,
   ...props
@@ -25,7 +27,8 @@ const Button = ({
   }
   return (
     <Tag
-      className={classnames(styles.button, className)}
+      className={classnames(styles.button)}
+      style={{ fontSize: calculateSize(size) }}
       role={props.href && 'button'}
       {...props}
     >
@@ -53,7 +56,7 @@ Button.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   size: PropTypes.number,
   className: PropTypes.string,
-  style: PropTypes.object,
+  style: PropTypes.func,
   textStyle: PropTypes.object,
   beforeStyle: PropTypes.object,
   afterStyle: PropTypes.object,
@@ -66,50 +69,56 @@ Button.defaultProps = {
   size: 0,
 };
 
-const button = ({block, before, after, disabled, style}) => ({
-  appearance: 'none',
-  display: 'inline-block',
-  boxSizing: 'border-box',
-  background: 'none',
-  borderWidth: '1px',
-  borderStyle: 'solid',
-  borderColor: 'transparent',
-  textDecoration: 'inherit',
-  fontFamily: 'inherit',
-  textAlign: 'center',
-  fontSize: 'inherit',
-  color: 'inherit',
-  cursor: 'pointer',
-  userSelect: 'none',
-  padding: 0,
-  ...block && ({
-    display: before || after ? 'flex' : 'block',
-    width: '100%',
-  }),
-  ...(before || after) && ({
-    display: 'flex',
-    alignItems: 'center',
-  }),
-  ...disabled && ({
-    cursor: 'not-allowed',
-  }),
-  ...!disabled && ({
-    '&:hover': {
-      background: '#EEE',
-    },
+const button = props => {
+  console.log(props)
+  return {
+    appearance: 'none',
+    display: 'inline-block',
+    boxSizing: 'border-box',
+    background: 'none',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: 'transparent',
+    textDecoration: 'inherit',
+    fontFamily: 'inherit',
+    textAlign: 'center',
+    fontSize: 'inherit',
+    color: 'inherit',
+    cursor: 'pointer',
+    userSelect: 'none',
+    padding: 0,
     '&:focus': {
       outline: 'none',
     },
-  }),
-  ...style,
-});
+    ...(props.before || props.after) && ({
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }),
+    ...props.block && ({
+      display: props.before || props.after ? 'flex' : 'block',
+      width: '100%',
+    }),
+    '[disabled]': ({
+      cursor: 'not-allowed',
+      backgroundColor: '#EEE',
+      '&:hover': {
+        backgroundColor: '#EEE',
+      },
+    }),
+    ...props.style && props.style(props),
+  }
+};
 
 const text = ({ before, after, size }) => {
   const s = size || 0;
   return {
     display: 'block',
     ...(before || after) && ({
-      flex: 1,
+      flexGrow: 1,
+    }),
+    ...(before && after) && ({
+      flexGrow: 0,
     }),
     ...(s || s === 0) && ({
 

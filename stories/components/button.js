@@ -2,7 +2,7 @@ import { boolean, number, object, select, text, withKnobs } from '@storybook/add
 
 import { Button } from '../../src';
 import React from 'react';
-import TestIcon from 'react-icons/lib/md/ac-unit';
+import TestIcon from 'react-icons/lib/md/check';
 import { action } from '@storybook/addon-actions';
 import initFelaProvider from '../initFela';
 import { storiesOf } from '@storybook/react';
@@ -24,7 +24,9 @@ export default storiesOf('Elements', module)
         backgroundColor: '#1678c2',
       },
     });
-    let before = select('Before', ['-', 'Test-Icon'], 'Test-Icon');
+    const appliedStyle = props => style;
+
+    let before = select('Before', ['-', 'Test-Icon'], '-');
     let after = select('After', ['-', 'Test-Icon'], '-');
     if (before === 'Test-Icon') {
       before = <TestIcon />;
@@ -42,7 +44,7 @@ export default storiesOf('Elements', module)
         block={block}
         size={size}
         href={href}
-        style={style}
+        style={appliedStyle}
         before={before}
         after={after}
         onClick={action('clicked')}
