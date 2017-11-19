@@ -9,11 +9,8 @@ const Button = ({
   tag,
   styles,
   style,
-  textStyle,
-  beforeStyle,
-  afterStyle,
+  design,
   size,
-  calculateSize = n => ms(n),
   className,
   children,
   block,
@@ -27,8 +24,7 @@ const Button = ({
   }
   return (
     <Tag
-      className={classnames(styles.button)}
-      style={{ fontSize: calculateSize(size) }}
+      className={classnames(styles.button, className)}
       role={props.href && 'button'}
       {...props}
     >
@@ -57,9 +53,7 @@ Button.propTypes = {
   size: PropTypes.number,
   className: PropTypes.string,
   style: PropTypes.func,
-  textStyle: PropTypes.object,
-  beforeStyle: PropTypes.object,
-  afterStyle: PropTypes.object,
+  theme: PropTypes.object,
   block: PropTypes.bool,
   disabled: PropTypes.bool,
 };
@@ -81,12 +75,16 @@ const button = props => {
     borderColor: 'transparent',
     textDecoration: 'inherit',
     fontFamily: 'inherit',
+    fontSize: 'inherit',
     textAlign: 'center',
     fontSize: 'inherit',
     color: 'inherit',
     cursor: 'pointer',
     userSelect: 'none',
-    padding: 0,
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
     '&:focus': {
       outline: 'none',
     },
@@ -106,25 +104,23 @@ const button = props => {
         backgroundColor: '#EEE',
       },
     }),
-    ...props.style && props.style(props),
+    ...props.design.button && props.design.button(props),
   }
 };
 
-const text = ({ before, after, size }) => {
-  const s = size || 0;
-  return {
-    display: 'block',
-    ...(before || after) && ({
-      flexGrow: 1,
-    }),
-    ...(before && after) && ({
-      flexGrow: 0,
-    }),
-    ...(s || s === 0) && ({
+const text = props => ({
+  display: 'block',
+  ...(props.before || props.after) && ({
+    flexGrow: 1,
+  }),
+  ...(props.before && props.after) && ({
+    flexGrow: 0,
+  }),
+  ...(props.size || props.size === 0) && ({
 
-    })
-  }
-}
+  }),
+  ...props.design.text && props.design.text(props),
+})
 
 const beforeAndAfter = ({ size }) => {
   const s = size || 0;
@@ -137,12 +133,12 @@ const beforeAndAfter = ({ size }) => {
 
 const before = props => ({
   ...beforeAndAfter(props),
-  ...props.beforeStyle,
+  ...props.design.before && props.design.before(props),
 });
 
 const after = props => ({
   ...beforeAndAfter(props),
-  ...props.afterStyle,
+  ...props.design.after && props.design.after(props),
 });
 
 export default connect({

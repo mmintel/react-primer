@@ -38,6 +38,8 @@ Headline.propTypes = {
 
 const headline = props => ({
   display: 'block',
+  marginTop: 0,
+  marginBottom: 0,
   ...props.styles,
 });
 
