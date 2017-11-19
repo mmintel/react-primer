@@ -25,7 +25,6 @@
     "fela-plugin-fallback-value": "^5.0.14",
     "fela-plugin-placeholder-prefixer": "^5.0.14",
     "fela-plugin-prefixer": "^5.0.14",
-    "modularscale-js": "^3.0.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-fela": "^6.1.0",

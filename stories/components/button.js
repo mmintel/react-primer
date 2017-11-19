@@ -15,7 +15,6 @@ export default storiesOf('Elements', module)
   .add('Button', () => {
     const disabled = boolean('Disabled', false);
     const block = boolean('Block', false);
-    const size = number('Size', 0)
     const label = text('Text', 'I am a button');
     const href = text('Href', 'http://...');
     const style = object('Style', {
@@ -24,7 +23,11 @@ export default storiesOf('Elements', module)
         backgroundColor: '#1678c2',
       },
     });
-    const appliedStyle = props => style;
+    const appliedStyle = {
+      button(props) {
+        return style
+      }
+    };
 
     let before = select('Before', ['-', 'Test-Icon'], '-');
     let after = select('After', ['-', 'Test-Icon'], '-');
@@ -42,9 +45,8 @@ export default storiesOf('Elements', module)
       <Button
         disabled={disabled}
         block={block}
-        size={size}
         href={href}
-        style={appliedStyle}
+        design={appliedStyle}
         before={before}
         after={after}
         onClick={action('clicked')}

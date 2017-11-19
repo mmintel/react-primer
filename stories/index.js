@@ -6,6 +6,7 @@ import './components/loading';
 import './components/headline';
 import './components/expand';
 import './components/accordion';
+import './components/masonry';
 
 import { addDecorator, linkTo, setAddon, storiesOf } from '@storybook/react';
 
