@@ -1,38 +1,51 @@
 import PropTypes from 'prop-types';
+import Bricks from 'bricks.js';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
 
-const Masonry = ({
-  styles,
-  design,
-  className,
-  children,
-  columns,
-  ...props
-}) => {
-  const childrenWithProps = React.Children.map(children,
-   (child, index) => React.cloneElement(child, {
-     className: styles.item,
-   })
-  );
-  return (
-    <div
-      className={classnames(styles.masonry, className)}
-      {...props}
-      >
-        {childrenWithProps}
-    </div>
-  )
-}
+class Masonry extends React.Component {
+  propTypes = {
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
+    className: PropTypes.string,
+    columns: PropTypes.number,
+    style: PropTypes.object,
+    design: PropTypes.func,
+  };
 
-Masonry.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
-  className: PropTypes.string,
-  columns: PropTypes.number,
-  style: PropTypes.object,
-  design: PropTypes.func,
-};
+  componentDidMount() {
+    const instance = Bricks({
+      container: '.selector'
+    })
+  }
+
+  render() {
+    const {
+      styles,
+      design,
+      className,
+      children,
+      columns,
+      ...props
+    } = this.props;
+
+    const childrenWithProps = React.Children.map(children,
+     (child, index) => React.cloneElement(child, {
+       className: styles.item,
+     })
+    );
+
+    return (
+      <div
+        className={classnames(styles.masonry, className)}
+        ref={node => this.node = node}
+        {...props}
+        >
+          {childrenWithProps}
+      </div>
+    )
+  }
+}
 
 const masonry = props => ({
   lineHeight: 0,
@@ -42,7 +55,8 @@ const masonry = props => ({
 });
 
 const item = props => ({
-  display: 'inline-block',
+  display: 'block',
+  maxWidth: '100%',
 })
 
 export default connect({

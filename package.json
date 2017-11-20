@@ -21,6 +21,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "bricks.js": "^1.8.0",
     "fela": "^6.0.5",
     "fela-plugin-fallback-value": "^5.0.14",
     "fela-plugin-placeholder-prefixer": "^5.0.14",
@@ -41,8 +42,8 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "react-icons": "^2.2.7",
-    "nwb": "^0.19.2"
+    "nwb": "^0.19.2",
+    "react-icons": "^2.2.7"
   },
   "author": "",
   "homepage": "",

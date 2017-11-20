@@ -1649,6 +1649,12 @@ brcast@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/brcast/-/brcast-3.0.1.tgz#6256a8349b20de9eed44257a9b24d71493cd48dd"
 
+bricks.js@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/bricks.js/-/bricks.js-1.8.0.tgz#8fdeb3c0226af251f4d5727a7df7f9ac0092b4b2"
+  dependencies:
+    knot.js "^1.1.5"
+
 brorand@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
@@ -4631,6 +4637,10 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
+knot.js@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/knot.js/-/knot.js-1.1.5.tgz#28e72522f703f50fe98812fde224dd72728fef5d"
+
 lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
@@ -5038,10 +5048,6 @@ mocha@3.5.3:
     lodash.create "3.1.1"
     mkdirp "0.5.1"
     supports-color "3.1.2"
-
-modularscale-js@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/modularscale-js/-/modularscale-js-3.0.1.tgz#6b3e6a3ecac678210a14a3f700c4e7da141af9e3"
 
 moment@^2.19.2:
   version "2.19.2"
