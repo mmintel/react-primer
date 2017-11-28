@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
-import ms from 'modularscale-js';
 
 const Headline = ({
   styles,
@@ -11,7 +10,7 @@ const Headline = ({
   children,
   tag = 'h2',
   size = 1,
-  calculateSize = n => ms(n),
+  calculateSize,
   ...props
 }) => {
   const Tag = tag;

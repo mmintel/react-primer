@@ -13,10 +13,19 @@ class Masonry extends React.Component {
     design: PropTypes.func,
   };
 
+  constructor(props) {
+    super(props);
+    this.node = null;
+    this.bricks = null;
+  }
+
   componentDidMount() {
-    const instance = Bricks({
-      container: '.selector'
-    })
+    console.log(this.node)
+    if(this.node) {
+      this.bricks = Bricks({
+        container: this.node,
+      })
+    }
   }
 
   render() {
