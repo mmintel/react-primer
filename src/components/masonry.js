@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { SpringGrid, measureItems } from 'react-stonecutter';
+import { SpringGrid, measureItems, layout } from 'react-stonecutter';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
@@ -15,9 +15,16 @@ class Masonry extends React.Component {
     className: PropTypes.string,
     columns: PropTypes.number.isRequired,
     columnWidth: PropTypes.number.isRequired,
+    gutterWidth: PropTypes.number,
+    gutterHeight: PropTypes.number,
     style: PropTypes.object,
     design: PropTypes.func,
   };
+
+  static defaultProps = {
+    gutterWidth: 0,
+    gutterHeight: 0,
+  }
 
   constructor(props) {
     super(props);
@@ -32,6 +39,8 @@ class Masonry extends React.Component {
       children,
       columns,
       columnWidth,
+      gutterWidth,
+      gutterHeight,
       ...props
     } = this.props;
 
@@ -44,6 +53,9 @@ class Masonry extends React.Component {
         component="ul"
         columns={columns}
         columnWidth={columnWidth}
+        layout={layout.pinterest}
+        gutterWidth={gutterWidth}
+        gutterHeight={gutterHeight}
         className={classnames(styles.masonry, className)}
         ref={node => this.node = node}
         {...props}
@@ -64,6 +76,8 @@ const masonry = props => ({
 
 const item = props => ({
   width: `${props.columnWidth}px`,
+  marginBottom: 0,
+  lineHeight: 0,
 });
 
 export default connect({
