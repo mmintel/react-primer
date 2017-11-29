@@ -11,7 +11,7 @@ export default storiesOf('Elements', module)
   .addDecorator(withKnobs)
   .addDecorator(FelaProvider)
   .add('Masonry', () => {
-    const columns = number('Columns', 2);
+    const columns = number('Columns', 4);
     return (
       <Masonry columns={columns} columnWidth={150}>
         <Image fluid src="http://via.placeholder.com/150x400/e8117e/ffffff" alt="" />

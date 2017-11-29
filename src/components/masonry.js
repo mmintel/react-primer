@@ -75,7 +75,7 @@ const masonry = props => ({
 });
 
 const item = props => ({
-  width: `${props.columnWidth}px`,
+  width: `${props.columnWidth}`,
   marginBottom: 0,
   lineHeight: 0,
 });
