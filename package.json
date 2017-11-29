@@ -21,7 +21,6 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "bricks.js": "^1.8.0",
     "fela": "^6.0.5",
     "fela-plugin-fallback-value": "^5.0.14",
     "fela-plugin-placeholder-prefixer": "^5.0.14",
@@ -30,6 +29,7 @@
     "react-dom": "^16.1.1",
     "react-fela": "^6.1.0",
     "react-motion": "^0.5.2",
+    "react-stonecutter": "^0.3.8",
     "storybook-addon-props-fela": "^1.0.3"
   },
   "devDependencies": {

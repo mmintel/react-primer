@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types';
-import Bricks from 'bricks.js';
+import { SpringGrid, measureItems } from 'react-stonecutter';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
 
+const Grid = measureItems(SpringGrid, {
+  measureImages: true,
+  background: true,
+});
+
 class Masonry extends React.Component {
-  propTypes = {
+  static propTypes = {
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
     className: PropTypes.string,
-    columns: PropTypes.number,
+    columns: PropTypes.number.isRequired,
+    columnWidth: PropTypes.number.isRequired,
     style: PropTypes.object,
     design: PropTypes.func,
   };
@@ -16,16 +22,6 @@ class Masonry extends React.Component {
   constructor(props) {
     super(props);
     this.node = null;
-    this.bricks = null;
-  }
-
-  componentDidMount() {
-    console.log(this.node)
-    if(this.node) {
-      this.bricks = Bricks({
-        container: this.node,
-      })
-    }
   }
 
   render() {
@@ -35,38 +31,40 @@ class Masonry extends React.Component {
       className,
       children,
       columns,
+      columnWidth,
       ...props
     } = this.props;
 
-    const childrenWithProps = React.Children.map(children,
-     (child, index) => React.cloneElement(child, {
-       className: styles.item,
-     })
-    );
+    const wrappedChildren = React.Children.map(children, (child, index) => (
+      <li key={`masonry-${index}`} className={styles.item}>{child}</li>
+    ));
 
     return (
-      <div
+      <Grid
+        component="ul"
+        columns={columns}
+        columnWidth={columnWidth}
         className={classnames(styles.masonry, className)}
         ref={node => this.node = node}
         {...props}
         >
-          {childrenWithProps}
-      </div>
+          {wrappedChildren}
+      </Grid>
     )
   }
 }
 
 const masonry = props => ({
-  lineHeight: 0,
-  columnCount: props.columns || 4,
-  columnGap: 0,
+  listStyle: 'none',
+  paddingLeft: 0,
+  marginTop: 0,
+  marginBottom: 0,
   ...props.design && props.design(props),
 });
 
 const item = props => ({
-  display: 'block',
-  maxWidth: '100%',
-})
+  width: `${props.columnWidth}px`,
+});
 
 export default connect({
   masonry,
