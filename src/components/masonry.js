@@ -1,20 +1,14 @@
 import PropTypes from 'prop-types';
-import { SpringGrid, measureItems, layout } from 'react-stonecutter';
+import MasonryLayout from 'masonry-layout';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
-
-const Grid = measureItems(SpringGrid, {
-  measureImages: true,
-  background: true,
-});
 
 class Masonry extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
     className: PropTypes.string,
-    columns: PropTypes.number.isRequired,
-    columnWidth: PropTypes.number.isRequired,
+    columns: PropTypes.number,
     gutterWidth: PropTypes.number,
     gutterHeight: PropTypes.number,
     style: PropTypes.object,
@@ -22,6 +16,7 @@ class Masonry extends React.Component {
   };
 
   static defaultProps = {
+    columns: 4,
     gutterWidth: 0,
     gutterHeight: 0,
   }
@@ -29,6 +24,11 @@ class Masonry extends React.Component {
   constructor(props) {
     super(props);
     this.node = null;
+    this.masonry = null;
+  }
+
+  componentDidMount() {
+    this.masonry = new MasonryLayout(this.node);
   }
 
   render() {
@@ -38,7 +38,6 @@ class Masonry extends React.Component {
       className,
       children,
       columns,
-      columnWidth,
       gutterWidth,
       gutterHeight,
       ...props
@@ -49,35 +48,35 @@ class Masonry extends React.Component {
     ));
 
     return (
-      <Grid
-        component="ul"
-        columns={columns}
-        columnWidth={columnWidth}
-        layout={layout.pinterest}
-        gutterWidth={gutterWidth}
-        gutterHeight={gutterHeight}
+      <ul
         className={classnames(styles.masonry, className)}
         ref={node => this.node = node}
         {...props}
         >
           {wrappedChildren}
-      </Grid>
+      </ul>
     )
   }
 }
 
 const masonry = props => ({
+  display: 'block',
   listStyle: 'none',
   paddingLeft: 0,
   marginTop: 0,
   marginBottom: 0,
+  marginRight: props.gutterWidth ? `${props.gutterWidth * -1}rem` : 0,
+  marginLeft: props.gutterWidth ? `${props.gutterWidth * -1}rem` : 0,
   ...props.design && props.design(props),
 });
 
 const item = props => ({
-  width: `${props.columnWidth}`,
-  marginBottom: 0,
-  lineHeight: 0,
+  display: 'block',
+  //lineHeight: 0,
+  width: `${100 / (props.columns || 4)}%`,
+  paddingRight: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
+  paddingLeft: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
+  paddingBottom: props.gutterHeight ? `${props.gutterHeight}rem` : 0,
 });
 
 export default connect({

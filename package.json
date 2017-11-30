@@ -25,11 +25,11 @@
     "fela-plugin-fallback-value": "^5.0.14",
     "fela-plugin-placeholder-prefixer": "^5.0.14",
     "fela-plugin-prefixer": "^5.0.14",
+    "masonry-layout": "^4.2.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-fela": "^6.1.0",
     "react-motion": "^0.5.2",
-    "react-stonecutter": "^0.3.8",
     "storybook-addon-props-fela": "^1.0.3"
   },
   "devDependencies": {

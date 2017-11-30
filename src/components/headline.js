@@ -28,9 +28,9 @@ const Headline = ({
 Headline.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
+  calculateSize: PropTypes.func.isRequired,
   className: PropTypes.string,
   size: PropTypes.number,
-  calculateSize: PropTypes.func,
   styles: PropTypes.object,
   style: PropTypes.object,
 };
