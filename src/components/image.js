@@ -10,6 +10,7 @@ const Image = ({
   design,
   className,
   fluid,
+  stretch,
   round,
   ...props
 }) => (
@@ -24,6 +25,7 @@ Image.propTypes = {
   style: PropTypes.object,
   design: PropTypes.func,
   fluid: PropTypes.bool,
+  stretch: PropTypes.bool,
   round: PropTypes.bool,
 };
 
@@ -31,6 +33,10 @@ const image = props => ({
   ...props.fluid && ({
     display: 'block',
     maxWidth: '100%',
+  }),
+  ...props.stretch && ({
+    display: 'block',
+    width: '100%',
   }),
   ...props.round && ({
     borderRadius: '100%',

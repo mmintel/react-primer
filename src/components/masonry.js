@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import MasonryLayout from 'masonry-layout';
+import ImagesLoaded from 'imagesloaded';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
@@ -28,7 +29,9 @@ class Masonry extends React.Component {
   }
 
   componentDidMount() {
-    this.masonry = new MasonryLayout(this.node);
+    new ImagesLoaded(this.node, () => {
+      this.masonry = new MasonryLayout(this.node);
+    });
   }
 
   render() {
