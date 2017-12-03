@@ -75,7 +75,7 @@ const masonry = props => ({
 
 const item = props => ({
   display: 'block',
-  //lineHeight: 0,
+  boxSizing: 'border-box',
   width: `${100 / (props.columns || 4)}%`,
   paddingRight: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
   paddingLeft: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
