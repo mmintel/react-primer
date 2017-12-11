@@ -13,11 +13,14 @@ class Masonry extends React.Component {
     gutterWidth: PropTypes.number,
     gutterHeight: PropTypes.number,
     style: PropTypes.object,
-    design: PropTypes.func,
+    design: PropTypes.shape({
+      masonry: PropTypes.func,
+      item: PropTypes.func,
+    }),
   };
 
   static defaultProps = {
-    columns: 4,
+    design: {},
     gutterWidth: 0,
     gutterHeight: 0,
   }
@@ -40,7 +43,6 @@ class Masonry extends React.Component {
       design,
       className,
       children,
-      columns,
       gutterWidth,
       gutterHeight,
       ...props
@@ -68,18 +70,18 @@ const masonry = props => ({
   paddingLeft: 0,
   marginTop: 0,
   marginBottom: 0,
-  marginRight: props.gutterWidth ? `${props.gutterWidth * -1}rem` : 0,
-  marginLeft: props.gutterWidth ? `${props.gutterWidth * -1}rem` : 0,
-  ...props.design && props.design(props),
+  marginRight: props.gutterWidth ? `${(props.gutterWidth / 2) * -1}rem` : 0,
+  marginLeft: props.gutterWidth ? `${(props.gutterWidth / 2) * -1}rem` : 0,
+  ...props.design.masonry && props.design.masonry(props),
 });
 
 const item = props => ({
   display: 'block',
   boxSizing: 'border-box',
-  width: `${100 / (props.columns || 4)}%`,
   paddingRight: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
   paddingLeft: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
   paddingBottom: props.gutterHeight ? `${props.gutterHeight}rem` : 0,
+  ...props.design.item && props.design.item(props),
 });
 
 export default connect({

@@ -6,7 +6,6 @@ import { connect } from 'react-fela';
 const Container = ({
   tag,
   styles,
-  style,
   className,
   children,
   ...props
@@ -26,7 +25,7 @@ Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   className: PropTypes.string,
-  style: PropTypes.object,
+  design: PropTypes.func,
 };
 
 Container.defaultProps = {
@@ -43,7 +42,7 @@ const container = props => ({
   paddingRight: '2rem',
   marginLeft: 'auto',
   marginRight: 'auto',
-  ...props.styles,
+  ...props.design && props.design(props),
 })
 
 export default connect({
