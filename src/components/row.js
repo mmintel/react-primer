@@ -53,7 +53,7 @@ const row = props => ({
 const column = props => ({
   flexGrow: 1,
   flexShrink: 0,
-  flexBasis: 'auto',
+  flexBasis: 0,
   paddingLeft: `${props.gutter / 2}rem`,
   paddingRight: `${props.gutter / 2}rem`,
 });
