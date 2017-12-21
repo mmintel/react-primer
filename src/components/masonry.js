@@ -32,9 +32,11 @@ class Masonry extends React.Component {
   }
 
   componentDidMount() {
-    new ImagesLoaded(this.node, () => {
-      this.masonry = new MasonryLayout(this.node);
-    });
+    if(typeof window !== 'undefined') {
+      new ImagesLoaded(this.node, () => {
+        this.masonry = new MasonryLayout(this.node);
+      });
+    }
   }
 
   render() {
