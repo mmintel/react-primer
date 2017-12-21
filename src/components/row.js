@@ -33,7 +33,10 @@ Row.propTypes = {
   gutter: PropTypes.number,
   wrap: PropTypes.bool,
   reverse: PropTypes.bool,
-  design: PropTypes.func,
+  design: PropTypes.shape({
+    row: PropTypes.func,
+    column: PropTypes.func,
+  }),
 };
 
 Row.defaultProps = {
@@ -47,7 +50,7 @@ const row = props => ({
   flexWrap: props.wrap && 'wrap',
   marginLeft: `${(props.gutter / 2) * -1}rem`,
   marginRight: `${(props.gutter / 2) * -1}rem`,
-  ...props.design && props.design(props),
+  ...props.design && props.design.row(props),
 });
 
 const column = props => ({
@@ -56,6 +59,7 @@ const column = props => ({
   flexBasis: 0,
   paddingLeft: `${props.gutter / 2}rem`,
   paddingRight: `${props.gutter / 2}rem`,
+  ...props.design && props.design.column(props),
 });
 
 export default connect({
