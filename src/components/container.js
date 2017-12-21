@@ -8,6 +8,7 @@ const Container = ({
   styles,
   className,
   children,
+  rules,
   ...props
 }) => {
   let Tag = tag;

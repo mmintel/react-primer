@@ -9,6 +9,7 @@ const Headline = ({
   className,
   children,
   tag = 'h2',
+  rules,
   ...props
 }) => {
   const Tag = tag;

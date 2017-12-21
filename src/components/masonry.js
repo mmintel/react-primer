@@ -47,6 +47,7 @@ class Masonry extends React.Component {
       children,
       gutterWidth,
       gutterHeight,
+      rules,
       ...props
     } = this.props;
 
