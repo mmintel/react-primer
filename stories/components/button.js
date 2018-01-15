@@ -46,7 +46,7 @@ export default storiesOf('Elements', module)
         disabled={disabled}
         block={block}
         href={href}
-        design={appliedStyle}
+        overrides={appliedStyle}
         before={before}
         after={after}
         onClick={action('clicked')}

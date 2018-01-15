@@ -2,13 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
-import { combineRules } from 'fela';
 
 const Button = ({
   tag,
   styles,
-  style,
-  design,
+  overrides,
   size,
   className,
   children,
@@ -32,9 +30,11 @@ const Button = ({
           {before}
         </span>
       }
-      <span >
-        {children}
-      </span>
+      { children &&
+        <span >
+          {children}
+        </span>
+      }
       {after &&
         <span >
           {after}
@@ -51,8 +51,13 @@ Button.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   size: PropTypes.number,
   className: PropTypes.string,
-  style: PropTypes.func,
-  design: PropTypes.shape({
+  styles: PropTypes.shape({
+    button: PropTypes.string,
+    text: PropTypes.string,
+    before: PropTypes.string,
+    after: PropTypes.string,
+  }).isRequired,
+  overrides: PropTypes.shape({
     button: PropTypes.func,
     text: PropTypes.func,
     before: PropTypes.func,
@@ -63,9 +68,15 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  children: undefined,
+  before: undefined,
+  after: undefined,
+  className: undefined,
   tag: 'button',
   size: 0,
-  design: {}
+  block: false,
+  disabled: false,
+  overrides: {},
 };
 
 const button = props => ({
@@ -80,7 +91,6 @@ const button = props => ({
   fontFamily: 'inherit',
   fontSize: 'inherit',
   textAlign: 'center',
-  fontSize: 'inherit',
   color: 'inherit',
   cursor: 'pointer',
   userSelect: 'none',
@@ -107,8 +117,8 @@ const button = props => ({
       backgroundColor: '#EEE',
     },
   },
-  ...props.design.button && props.design.button(props),
-})
+  ...props.overrides.button && props.overrides.button(props),
+});
 
 const text = props => ({
   display: 'block',
@@ -118,8 +128,8 @@ const text = props => ({
   ...(props.before && props.after) && ({
     flexGrow: 0,
   }),
-  ...props.design.text && props.design.text(props),
-})
+  ...props.overrides.text && props.overrides.text(props),
+});
 
 const beforeAndAfter = ({ size }) => {
   const s = size || 0;
@@ -132,12 +142,12 @@ const beforeAndAfter = ({ size }) => {
 
 const before = props => ({
   ...beforeAndAfter(props),
-  ...props.design.before && props.design.before(props),
+  ...props.overrides.before && props.overrides.before(props),
 });
 
 const after = props => ({
   ...beforeAndAfter(props),
-  ...props.design.after && props.design.after(props),
+  ...props.overrides.after && props.overrides.after(props),
 });
 
 export default connect({

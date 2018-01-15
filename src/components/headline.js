@@ -5,7 +5,7 @@ import { connect } from 'react-fela';
 
 const Headline = ({
   styles,
-  design,
+  overrides,
   className,
   children,
   tag = 'h2',
@@ -26,7 +26,7 @@ const Headline = ({
 Headline.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
-  design: PropTypes.func,
+  overrides: PropTypes.func,
   className: PropTypes.string,
   styles: PropTypes.object,
 };
@@ -35,7 +35,7 @@ const headline = props => ({
   display: 'block',
   marginTop: 0,
   marginBottom: 0,
-  ...props.design && props.design(props),
+  ...props.overrides && props.overrides(props),
 });
 
 export default connect({

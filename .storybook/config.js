@@ -1,4 +1,4 @@
-import { configure } from '@storybook/react';
+import { configure, setAddon } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 
 function loadStories() {

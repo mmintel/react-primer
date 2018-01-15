@@ -26,7 +26,7 @@ Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   className: PropTypes.string,
-  design: PropTypes.func,
+  overrides: PropTypes.func,
 };
 
 Container.defaultProps = {
@@ -43,7 +43,7 @@ const container = props => ({
   paddingRight: '2rem',
   marginLeft: 'auto',
   marginRight: 'auto',
-  ...props.design && props.design(props),
+  ...props.overrides && props.overrides(props),
 })
 
 export default connect({

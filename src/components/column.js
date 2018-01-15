@@ -3,65 +3,55 @@ import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
 
-const Row = ({
+const Column = ({
   tag,
   styles,
   className,
   children,
   gutter,
-  wrap,
-  reverse,
   basis,
   overrides,
   ...props
 }) => {
   const Tag = tag;
-  const childrenWithProps = React.Children.map(children, child =>
-    React.cloneElement(child, {
-      gutter,
-      basis,
-    }));
   return (
     <Tag
-      className={classnames(styles.row, className)}
+      className={classnames(styles.column, className)}
       {...props}
     >
-      { childrenWithProps }
+      { children }
     </Tag>
   );
 };
 
-Row.propTypes = {
+Column.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]).isRequired,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
-  className: PropTypes.string,
   styles: PropTypes.shape({
-    row: PropTypes.string,
+    column: PropTypes.string,
   }).isRequired,
+  className: PropTypes.string,
   gutter: PropTypes.number,
-  wrap: PropTypes.bool,
-  reverse: PropTypes.bool,
   overrides: PropTypes.func,
 };
 
-Row.defaultProps = {
+Column.defaultProps = {
   tag: 'div',
   gutter: 2,
-  wrap: true,
-  reverse: false,
-  className: undefined,
   overrides: undefined,
+  className: undefined,
 };
 
-const row = props => ({
-  display: 'flex',
-  flexDirection: props.reverse ? 'row-reverse' : 'row',
-  flexWrap: props.wrap && 'wrap',
-  marginLeft: `${(props.gutter / 2) * -1}rem`,
-  marginRight: `${(props.gutter / 2) * -1}rem`,
+const column = props => ({
+  flexGrow: props.basis ? 0 : 1,
+  flexShrink: 0,
+  flexBasis: props.basis ? props.basis : 0,
+  paddingLeft: `${props.gutter / 2}rem`,
+  paddingRight: `${props.gutter / 2}rem`,
+  marginBottom: `${props.gutter}rem`,
   ...props.overrides && props.overrides(props),
 });
 
 export default connect({
-  row,
-})(Row);
+  column,
+})(Column);

@@ -11,14 +11,14 @@ class Masonry extends React.Component {
     gutterWidth: PropTypes.number,
     gutterHeight: PropTypes.number,
     style: PropTypes.object,
-    design: PropTypes.shape({
+    overrides: PropTypes.shape({
       masonry: PropTypes.func,
       item: PropTypes.func,
     }),
   };
 
   static defaultProps = {
-    design: {},
+    overrides: {},
     gutterWidth: 0,
     gutterHeight: 0,
   }
@@ -42,7 +42,7 @@ class Masonry extends React.Component {
   render() {
     const {
       styles,
-      design,
+      overrides,
       className,
       children,
       gutterWidth,
@@ -75,7 +75,7 @@ const masonry = props => ({
   marginBottom: 0,
   marginRight: props.gutterWidth ? `${(props.gutterWidth / 2) * -1}rem` : 0,
   marginLeft: props.gutterWidth ? `${(props.gutterWidth / 2) * -1}rem` : 0,
-  ...props.design.masonry && props.design.masonry(props),
+  ...props.overrides.masonry && props.overrides.masonry(props),
 });
 
 const item = props => ({
@@ -84,7 +84,7 @@ const item = props => ({
   paddingRight: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
   paddingLeft: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
   paddingBottom: props.gutterHeight ? `${props.gutterHeight}rem` : 0,
-  ...props.design.item && props.design.item(props),
+  ...props.overrides.item && props.overrides.item(props),
 });
 
 export default connect({

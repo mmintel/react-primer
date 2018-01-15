@@ -7,7 +7,7 @@ import { connect } from 'react-fela';
 
 const Image = ({
   styles,
-  design,
+  overrides,
   className,
   fluid,
   stretch,
@@ -23,7 +23,7 @@ const Image = ({
 Image.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
-  design: PropTypes.func,
+  overrides: PropTypes.func,
   fluid: PropTypes.bool,
   stretch: PropTypes.bool,
   round: PropTypes.bool,
@@ -41,7 +41,7 @@ const image = props => ({
   ...props.round && ({
     borderRadius: '100%',
   }),
-  ...props.design && props.design(props),
+  ...props.overrides && props.overrides(props),
 });
 
 export default connect({
