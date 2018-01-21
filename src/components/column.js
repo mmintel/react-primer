@@ -43,6 +43,7 @@ Column.defaultProps = {
 };
 
 const column = props => ({
+  boxSizing: 'border-box',
   flexGrow: props.basis ? 0 : 1,
   flexShrink: 0,
   flexBasis: props.basis ? props.basis : 0,
