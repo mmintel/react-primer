@@ -1,11 +1,7 @@
 import React from 'react';
 import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-
 import { Row, Column } from '../../src';
-import initFelaProvider from '../initFela';
-
-const FelaProvider = initFelaProvider();
 
 const Box = ({ children }) => (
   <div style={{ backgroundColor: '#EFEFEF', padding: '1rem' }}>
@@ -14,8 +10,6 @@ const Box = ({ children }) => (
 );
 
 export default storiesOf('Elements', module)
-  .addDecorator(withKnobs)
-  .addDecorator(FelaProvider)
   .add('Grid', () => {
     const gutter = number('Gutter', 2);
     return (

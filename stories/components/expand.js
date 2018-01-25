@@ -1,15 +1,9 @@
 import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
-
 import { Expand } from '../../src';
 import React from 'react';
-import initFelaProvider from '../initFela';
 import { storiesOf } from '@storybook/react';
 
-const FelaProvider = initFelaProvider();
-
 export default storiesOf('Elements', module)
-  .addDecorator(withKnobs)
-  .addDecorator(FelaProvider)
   .add('Expand', () => {
     return (
       <Expand toggler={<h2>Click me to expand</h2>}>

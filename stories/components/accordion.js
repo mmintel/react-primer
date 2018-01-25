@@ -1,14 +1,8 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { Accordion, Expand } from '../../src';
-import initFelaProvider from '../initFela';
-
-const FelaProvider = initFelaProvider();
 
 export default storiesOf('Elements', module)
-  .addDecorator(withKnobs)
-  .addDecorator(FelaProvider)
   .add('Accordion', () => {
     return (
       <Accordion>

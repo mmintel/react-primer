@@ -1,15 +1,9 @@
-import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
-
+import { boolean, number, object, select, text } from '@storybook/addon-knobs';
 import { Masonry, Image } from '../../src';
 import React from 'react';
-import initFelaProvider from '../initFela';
 import { storiesOf } from '@storybook/react';
 
-const FelaProvider = initFelaProvider();
-
 export default storiesOf('Elements', module)
-  .addDecorator(withKnobs)
-  .addDecorator(FelaProvider)
   .add('Masonry', () => {
     const columns = number('Columns', 4);
     const gutterWidth = number('Gutter Width', 1);

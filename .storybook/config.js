@@ -1,5 +1,11 @@
-import { configure, setAddon } from '@storybook/react';
+import { configure, setAddon, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
+import { withKnobs } from '@storybook/addon-knobs';
+import initFelaProvider from './initFela';
+const FelaProvider = initFelaProvider();
+
+addDecorator(withKnobs);
+addDecorator(FelaProvider);
 
 function loadStories() {
   require('../stories');

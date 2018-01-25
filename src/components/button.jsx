@@ -13,12 +13,10 @@ const Button = ({
   block,
   before,
   after,
+  href,
   ...props
 }) => {
-  let Tag = tag;
-  if (props.href) {
-    Tag = props.href.length > 0 ? 'a' : 'button';
-  }
+  const Tag = tag || href.length > 0 ? 'a' : 'button';
   return (
     <Tag
       className={classnames(styles.button, className)}
@@ -51,6 +49,7 @@ Button.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   size: PropTypes.number,
   className: PropTypes.string,
+  href: PropTypes.string,
   styles: PropTypes.shape({
     button: PropTypes.string,
     text: PropTypes.string,
@@ -72,6 +71,7 @@ Button.defaultProps = {
   before: undefined,
   after: undefined,
   className: undefined,
+  href: undefined,
   tag: 'button',
   size: 0,
   block: false,
@@ -80,13 +80,18 @@ Button.defaultProps = {
 };
 
 const button = props => ({
+  background: props.theme.color.gray.light.string(),
+  paddingTop: props.theme.calculateSpacing(1),
+  paddingRight: props.theme.calculateSpacing(1),
+  paddingBottom: props.theme.calculateSpacing(1),
+  paddingLeft: props.theme.calculateSpacing(1),
+  borderColor: props.theme.color.gray.medium.string(),
+  borderRadius: props.theme.radius,
   appearance: 'none',
   display: 'inline-block',
   boxSizing: 'border-box',
-  background: 'none',
   borderWidth: '1px',
   borderStyle: 'solid',
-  borderColor: 'transparent',
   textDecoration: 'inherit',
   fontFamily: 'inherit',
   fontSize: 'inherit',
@@ -94,10 +99,6 @@ const button = props => ({
   color: 'inherit',
   cursor: 'pointer',
   userSelect: 'none',
-  paddingTop: 0,
-  paddingRight: 0,
-  paddingBottom: 0,
-  paddingLeft: 0,
   ':focus': {
     outline: 'none',
   },
@@ -118,7 +119,7 @@ const button = props => ({
     },
   },
   ...props.overrides.button && props.overrides.button(props),
-});
+})
 
 const text = props => ({
   display: 'block',

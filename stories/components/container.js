@@ -1,15 +1,9 @@
 import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
-
 import { Container } from '../../src';
 import React from 'react';
-import initFelaProvider from '../initFela';
 import { storiesOf } from '@storybook/react';
 
-const FelaProvider = initFelaProvider();
-
 export default storiesOf('Elements', module)
-  .addDecorator(withKnobs)
-  .addDecorator(FelaProvider)
   .add('Container', () => {
     return (
       <Container>

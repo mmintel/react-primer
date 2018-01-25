@@ -4,26 +4,22 @@ import { Button } from '../../src';
 import React from 'react';
 import TestIcon from 'react-icons/lib/md/check';
 import { action } from '@storybook/addon-actions';
-import initFelaProvider from '../initFela';
 import { storiesOf } from '@storybook/react';
 
-const FelaProvider = initFelaProvider();
-
 export default storiesOf('Elements', module)
-  .addDecorator(withKnobs)
-  .addDecorator(FelaProvider)
   .add('Button', () => {
     const disabled = boolean('Disabled', false);
     const block = boolean('Block', false);
     const label = text('Text', 'I am a button');
     const href = text('Href', 'http://...');
-    const style = object('Style', {
+    const useOverrides = boolean('Use Overrides', false);
+    const style = object('Overrides', {
       backgroundColor: '#2185d0',
       '&:hover': {
         backgroundColor: '#1678c2',
       },
     });
-    const appliedStyle = {
+    const overrides = {
       button(props) {
         return style
       }
@@ -46,7 +42,7 @@ export default storiesOf('Elements', module)
         disabled={disabled}
         block={block}
         href={href}
-        overrides={appliedStyle}
+        overrides={useOverrides ? overrides : {}}
         before={before}
         after={after}
         onClick={action('clicked')}
