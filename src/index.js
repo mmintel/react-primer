@@ -1,4 +1,5 @@
 export { default as theme } from './theme';
+export { default as Card, CardHeader, CardBody, CardImage, CardFooter } from './components/card';
 export { default as Button } from './components/button';
 export { default as ButtonGroup } from './components/button-group';
 export { default as Container } from './components/container';

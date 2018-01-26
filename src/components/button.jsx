@@ -19,7 +19,7 @@ const Button = ({
   const Tag = tag || href.length > 0 ? 'a' : 'button';
   return (
     <Tag
-      className={classnames(styles.button, className)}
+      className={classnames(styles.root, className)}
       role={props.href && 'button'}
       {...props}
     >
@@ -51,13 +51,13 @@ Button.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string,
   styles: PropTypes.shape({
-    button: PropTypes.string,
+    root: PropTypes.string,
     text: PropTypes.string,
     before: PropTypes.string,
     after: PropTypes.string,
   }).isRequired,
   overrides: PropTypes.shape({
-    button: PropTypes.func,
+    root: PropTypes.func,
     text: PropTypes.func,
     before: PropTypes.func,
     after: PropTypes.func,
@@ -79,26 +79,29 @@ Button.defaultProps = {
   overrides: {},
 };
 
-const button = props => ({
-  background: props.theme.color.gray.light.string(),
-  paddingTop: props.theme.calculateSpacing(1),
-  paddingRight: props.theme.calculateSpacing(1),
-  paddingBottom: props.theme.calculateSpacing(1),
-  paddingLeft: props.theme.calculateSpacing(1),
+const root = props => ({
+  backgroundColor: props.theme.color.gray.light.string(),
+  paddingTop: props.theme.calculateSpacing(props.size),
+  paddingRight: props.theme.calculateSpacing(props.size),
+  paddingBottom: props.theme.calculateSpacing(props.size),
+  paddingLeft: props.theme.calculateSpacing(props.size),
   borderColor: props.theme.color.gray.medium.string(),
   borderRadius: props.theme.radius,
+  borderWidth: props.theme.border.width,
+  fontSize: props.theme.calculateSize(props.size),
   appearance: 'none',
   display: 'inline-block',
   boxSizing: 'border-box',
-  borderWidth: '1px',
   borderStyle: 'solid',
   textDecoration: 'inherit',
   fontFamily: 'inherit',
-  fontSize: 'inherit',
   textAlign: 'center',
   color: 'inherit',
   cursor: 'pointer',
   userSelect: 'none',
+  ':hover': {
+    backgroundColor: props.theme.color.gray.medium.string(),
+  },
   ':focus': {
     outline: 'none',
   },
@@ -113,13 +116,13 @@ const button = props => ({
   }),
   '[disabled]': {
     cursor: 'not-allowed',
-    backgroundColor: '#EEE',
+    backgroundColor: props.theme.color.gray.light.alpha(0.5).string(),
     '&:hover': {
-      backgroundColor: '#EEE',
+      backgroundColor: props.theme.color.gray.light.alpha(0.5).string(),
     },
   },
-  ...props.overrides.button && props.overrides.button(props),
-})
+  ...props.overrides.root && props.overrides.root(props),
+});
 
 const text = props => ({
   display: 'block',
@@ -152,7 +155,7 @@ const after = props => ({
 });
 
 export default connect({
-  button,
+  root,
   text,
   before,
   after,

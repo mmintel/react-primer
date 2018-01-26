@@ -12,6 +12,7 @@ export default storiesOf('Elements', module)
     const block = boolean('Block', false);
     const label = text('Text', 'I am a button');
     const href = text('Href', 'http://...');
+    const size = number('Size', 0);
     const useOverrides = boolean('Use Overrides', false);
     const style = object('Overrides', {
       backgroundColor: '#2185d0',
@@ -45,6 +46,7 @@ export default storiesOf('Elements', module)
         overrides={useOverrides ? overrides : {}}
         before={before}
         after={after}
+        size={size}
         onClick={action('clicked')}
       >
         {label}

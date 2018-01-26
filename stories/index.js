@@ -1,3 +1,4 @@
+import './components/card';
 import './components/button';
 import './components/button-group';
 import './components/container';

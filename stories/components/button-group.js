@@ -8,9 +8,17 @@ import { Button, ButtonGroup } from '../../src';
 export default storiesOf('Elements', module)
   .add('Button Group', () => {
     return (
-      <ButtonGroup>
-        <Button>Test</Button>
-        <Button>Test</Button>
-      </ButtonGroup>
+      <div>
+        <ButtonGroup>
+          <Button>Test</Button>
+          <Button>Test</Button>
+        </ButtonGroup>
+        <ButtonGroup>
+          <Button>Test</Button>
+          <Button>Test</Button>
+          <Button>Test</Button>
+          <Button>Test</Button>
+        </ButtonGroup>
+      </div>
     )
   })
