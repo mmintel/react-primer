@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
 import { connect } from 'react-fela';
+import { withMargins } from '../';
 
 const ButtonGroup = ({
   tag,
@@ -67,6 +68,6 @@ const root = props => ({
   ...props.overrides && props.overrides.root(props),
 });
 
-export default connect({
+export default withMargins(connect({
   root,
-})(ButtonGroup);
+})(ButtonGroup));

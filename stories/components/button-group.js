@@ -9,7 +9,7 @@ export default storiesOf('Elements', module)
   .add('Button Group', () => {
     return (
       <div>
-        <ButtonGroup>
+        <ButtonGroup margin={{ right: 1 }}>
           <Button>Test</Button>
           <Button>Test</Button>
         </ButtonGroup>

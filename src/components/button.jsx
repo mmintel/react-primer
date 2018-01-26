@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
+import { withMargins } from '../';
 
 const Button = ({
   tag,
@@ -93,6 +94,7 @@ const root = props => ({
   display: 'inline-block',
   boxSizing: 'border-box',
   borderStyle: 'solid',
+  textTransform: 'uppercase',
   textDecoration: 'inherit',
   fontFamily: 'inherit',
   textAlign: 'center',
@@ -154,9 +156,9 @@ const after = props => ({
   ...props.overrides.after && props.overrides.after(props),
 });
 
-export default connect({
+export default withMargins(connect({
   root,
   text,
   before,
   after,
-})(Button);
+})(Button));

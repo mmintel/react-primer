@@ -1,11 +1,7 @@
 import React from 'react';
 import { connect } from 'react-fela';
-
-const Card = ({ styles, children, ...props }) => (
-  <div className={styles.card} {...props}>
-    { children }
-  </div>
-)
+import cn from 'classnames';
+import { withMargins } from '../';
 
 const card = props => ({
   display: 'flex',
@@ -15,10 +11,10 @@ const card = props => ({
   borderRadius: props.theme.radius,
   overflow: 'hidden',
   transition: 'transform 0.3s ease-in-out',
-  boxShadow: props.theme.shadow[2],
-  ':hover': {
-    transform: 'scale(1.05)',
-  }
+  borderWidth: props.level === 0 ? props.theme.border.width : 0,
+  borderStyle: 'solid',
+  borderColor: props.theme.color.gray.light.string(),
+  boxShadow: props.level > 0 && props.theme.shadow[props.level],
 });
 
 const header = props => ({
@@ -44,8 +40,20 @@ const footer = props => ({
   paddingLeft: '1rem',
   paddingRight: '1rem',
   paddingBottom: '1rem',
-  borderTop: props.children && `1px solid ${props.theme.color.gray.light.string()}`,
+  borderTop: `1px solid ${props.theme.color.gray.light.string()}`,
 });
+
+const Card = ({ styles, children, className, ...props }) => (
+  <div className={cn(styles.card, className)} {...props}>
+    { children }
+  </div>
+);
+
+Card.defaultProps = {
+  level: 0,
+};
+
+export default withMargins(connect({ card })(Card));
 
 export const CardHeader = connect({ header })(({ styles, children, ...props }) => (
   <header className={styles.header} {...props}>
@@ -59,21 +67,8 @@ export const CardBody = connect({ body })(({ styles, children, ...props }) => (
   </div>
 ));
 
-export const CardImage = connect({ body })(({ styles, children, ...props }) => (
-  <div className={styles.image} {...props}>
-    {children}
-  </div>
-));
-
-export const CardFooter = connect({ body })(({ styles, children, ...props }) => (
+export const CardFooter = connect({ footer })(({ styles, children, ...props }) => (
   <footer className={styles.footer} {...props}>
     {children}
   </footer>
 ));
-
-export default connect({
-  card,
-  header,
-  body,
-  footer,
-})(Card);

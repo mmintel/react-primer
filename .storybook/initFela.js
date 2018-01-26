@@ -6,7 +6,7 @@ import fallbackValue from 'fela-plugin-fallback-value'
 import placeholderPrefixer from 'fela-plugin-placeholder-prefixer';
 import prefixer from 'fela-plugin-prefixer';
 import { theme } from '../src';
-console.log(theme)
+
 const config = {
   plugins: [
     placeholderPrefixer(),
