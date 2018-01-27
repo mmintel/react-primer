@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
+import { withMargins } from '../';
 
 const Column = ({
   tag,
@@ -53,6 +54,6 @@ const column = props => ({
   ...props.overrides && props.overrides(props),
 });
 
-export default connect({
+export default withMargins(connect({
   column,
-})(Column);
+})(Column));

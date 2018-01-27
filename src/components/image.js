@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
-
+import { withMargins } from '../';
 // TODO load images first when visible in viewport
 
 const Image = ({
@@ -44,6 +44,6 @@ const image = props => ({
   ...props.overrides && props.overrides(props),
 });
 
-export default connect({
+export default withMargins(connect({
   image,
-})(Image);
+})(Image));

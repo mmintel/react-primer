@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
+import { withMargins } from '../';
 
 const Container = ({
   tag,
@@ -46,6 +47,6 @@ const container = props => ({
   ...props.overrides && props.overrides(props),
 })
 
-export default connect({
+export default withMargins(connect({
   container,
-})(Container);
+})(Container));

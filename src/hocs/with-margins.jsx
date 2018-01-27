@@ -10,20 +10,29 @@ function withMargins(WrappedComponent) {
     margin: {},
   };
 
-  const margin = ({ m, theme }) => {
-    if (!m) return;
-    const { t, r, b, l, ...media } = m;
-    console.log(media)
+  function margins(theme, t, r, b, l) {
     return {
       marginTop: t && theme.calculateSpacing(t),
       marginRight: r && theme.calculateSpacing(r),
       marginBottom: b && theme.calculateSpacing(b),
       marginLeft: l && theme.calculateSpacing(l),
-      ...(() => (
-        for(item of media) {
-          
-        }
-      )),
+    }
+  }
+
+  function transformMediaQueries(theme, media) {
+    const rules = {};
+    for (let item in media) {
+      rules[item] = margins(theme, media[item].t, media[item].r, media[item].b, media[item].l)
+    }
+    return rules;
+  }
+
+  const margin = ({ m, theme }) => {
+    if (!m) return;
+    const { t, r, b, l, ...mq } = m;
+    return {
+      ...margins(theme, t, r, b, l),
+      ...transformMediaQueries(theme, mq),
     }
   };
 

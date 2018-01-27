@@ -1,6 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { connect } from 'react-fela';
+import { withMargins } from '../';
 
 export default class Expand extends React.Component {
   state = {
@@ -37,7 +38,7 @@ const content = props => ({
   display: props.active ? 'block' : 'none',
 });
 
-const View = connect({
+const View = withMargins(connect({
   toggler,
   content,
 })(
@@ -55,4 +56,4 @@ const View = connect({
       </Tag>
     );
   }
-);
+));

@@ -1,5 +1,5 @@
 import { Motion, spring } from 'react-motion';
-
+import { withMargins } from '../';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
@@ -26,6 +26,6 @@ const dimmer = props => ({
   pointerEvents: 'none',
 });
 
-export default connect({
+export default withMargins(connect({
   dimmer,
-})(Dimmer);
+})(Dimmer));

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-fela';
+import { withMargins } from '../';
 
 class Masonry extends React.Component {
   static propTypes = {
@@ -87,7 +88,7 @@ const item = props => ({
   ...props.overrides.item && props.overrides.item(props),
 });
 
-export default connect({
+export default withMargins(connect({
   masonry,
   item,
-})(Masonry);
+})(Masonry));

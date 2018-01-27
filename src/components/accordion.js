@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
+import { withMargins } from '../';
 
 class Accordion extends React.Component {
   state = {
@@ -33,4 +34,4 @@ class Accordion extends React.Component {
   }
 }
 
-export default Accordion;
+export default withMargins(Accordion);
