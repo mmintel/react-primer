@@ -9,13 +9,13 @@ const Container = ({
   styles,
   className,
   children,
-  rules,
+  overrides,
   ...props
 }) => {
-  let Tag = tag;
+  const Tag = tag;
   return (
     <Tag
-      className={classnames(styles.container, className)}
+      className={classnames(styles.root, className)}
       {...props}
     >
       {children}
@@ -26,27 +26,33 @@ const Container = ({
 Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
+  styles: PropTypes.shape({
+    root: PropTypes.string,
+  }).isRequired,
   className: PropTypes.string,
   overrides: PropTypes.func,
 };
 
 Container.defaultProps = {
   tag: 'div',
+  children: undefined,
+  className: undefined,
+  overrides: undefined,
 };
 
-const container = props => ({
+const root = props => ({
   display: 'block',
   boxSizing: 'border-box',
   width: '100%',
   maxWidth: '1200px',
   minWidth: '280px',
-  paddingLeft: '2rem',
-  paddingRight: '2rem',
+  paddingLeft: props.theme.calculateSpacing(2),
+  paddingRight: props.theme.calculateSpacing(2),
   marginLeft: 'auto',
   marginRight: 'auto',
   ...props.overrides && props.overrides(props),
-})
+});
 
-export default withMargins(connect({
-  container,
-})(Container));
+export default connect({
+  root,
+})(Container);

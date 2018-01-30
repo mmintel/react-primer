@@ -3,11 +3,13 @@ import { connect } from 'react-fela';
 import cn from 'classnames';
 
 function withMargins(WrappedComponent) {
-  const StyledComponent = ({ m, styles, className, ...props }) =>
-    <WrappedComponent className={cn(styles.margin, className)} {...props} />
+  const StyledComponent = ({ m, styles, className, ...props }) => {
+    console.log(props);
+    return <WrappedComponent className={cn(styles.margin, className)} {...props} />;
+  };
 
   StyledComponent.defaultProps = {
-    margin: {},
+    m: undefined,
   };
 
   function margins(theme, t, r, b, l) {
@@ -16,7 +18,7 @@ function withMargins(WrappedComponent) {
       marginRight: r && theme.calculateSpacing(r),
       marginBottom: b && theme.calculateSpacing(b),
       marginLeft: l && theme.calculateSpacing(l),
-    }
+    };
   }
 
   function transformMediaQueries(theme, media) {
