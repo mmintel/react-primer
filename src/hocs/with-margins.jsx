@@ -4,7 +4,6 @@ import cn from 'classnames';
 
 function withMargins(WrappedComponent) {
   const StyledComponent = ({ m, styles, className, ...props }) => {
-    console.log(props);
     return <WrappedComponent className={cn(styles.margin, className)} {...props} />;
   };
 
