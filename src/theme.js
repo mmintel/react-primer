@@ -6,11 +6,9 @@ const shadowOpacity = 0.05;
 export default {
   calculateSize: size => `${Math.min(Math.max(ms(size, {
     base: 1,
-    ratio: 1.25,
-  }), 0.8), 5)}rem`,
+  }), 0.5), 5)}rem`,
   calculateSpacing: spacing => `${ms(spacing, {
     base: 1,
-    ratio: 1.25,
   })}rem`,
   radius: '0.5rem',
   border: {

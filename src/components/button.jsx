@@ -74,7 +74,7 @@ Button.defaultProps = {
   className: undefined,
   href: undefined,
   tag: 'button',
-  size: 0,
+  size: -2,
   block: false,
   disabled: false,
   overrides: {},
