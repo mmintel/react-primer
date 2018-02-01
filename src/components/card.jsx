@@ -3,7 +3,7 @@ import { connect } from 'react-fela';
 import cn from 'classnames';
 import { withMargins } from '../';
 
-const card = props => ({
+const root = props => ({
   display: 'flex',
   flexDirection: 'column',
   color: props.theme.color.gray.dark.string(),
@@ -15,6 +15,9 @@ const card = props => ({
   borderStyle: 'solid',
   borderColor: props.theme.color.gray.light.string(),
   boxShadow: props.level > 0 && props.theme.shadow[props.level],
+  marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
+  marginTop: props.margin && !props.margin.top && props.theme.calculateSpacing(0),
+  ...props.overrides && props.overrides.root(props),
 });
 
 const header = props => ({
@@ -43,8 +46,8 @@ const footer = props => ({
   borderTop: `1px solid ${props.theme.color.gray.light.string()}`,
 });
 
-const Card = ({ styles, children, className, ...props }) => (
-  <div className={cn(styles.card, className)} {...props}>
+const Card = ({ styles, children, className, margin, ...props }) => (
+  <div className={cn(styles.root, className)} {...props}>
     { children }
   </div>
 );
@@ -53,7 +56,7 @@ Card.defaultProps = {
   level: 0,
 };
 
-export default withMargins(connect({ card })(Card));
+export default withMargins(connect({ root })(Card));
 
 export const CardHeader = connect({ header })(({ styles, children, ...props }) => (
   <header className={styles.header} {...props}>

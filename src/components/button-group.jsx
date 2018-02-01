@@ -9,6 +9,7 @@ const ButtonGroup = ({
   styles,
   className,
   children,
+  margin,
   overrides,
   ...props
 }) => {

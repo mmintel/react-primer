@@ -5,25 +5,6 @@ import { connect } from 'react-fela';
 import { withMargins } from '../';
 
 class Masonry extends React.Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
-    className: PropTypes.string,
-    columns: PropTypes.number,
-    gutterWidth: PropTypes.number,
-    gutterHeight: PropTypes.number,
-    style: PropTypes.object,
-    overrides: PropTypes.shape({
-      masonry: PropTypes.func,
-      item: PropTypes.func,
-    }),
-  };
-
-  static defaultProps = {
-    overrides: {},
-    gutterWidth: 0,
-    gutterHeight: 0,
-  }
-
   constructor(props) {
     super(props);
     this.node = null;
@@ -31,7 +12,7 @@ class Masonry extends React.Component {
   }
 
   componentDidMount() {
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       const MasonryLayout = require('masonry-layout');
       const ImagesLoaded = require('imagesloaded');
       new ImagesLoaded(this.node, () => {
@@ -58,7 +39,7 @@ class Masonry extends React.Component {
 
     return (
       <ul
-        className={classnames(styles.masonry, className)}
+        className={classnames(styles.root, className)}
         ref={node => this.node = node}
         {...props}
         >
@@ -68,15 +49,36 @@ class Masonry extends React.Component {
   }
 }
 
-const masonry = props => ({
+Masonry.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
+  className: PropTypes.string,
+  columns: PropTypes.number,
+  gutterWidth: PropTypes.number,
+  gutterHeight: PropTypes.number,
+  style: PropTypes.shape({
+    root: PropTypes.string,
+  }).isRequired,
+  overrides: PropTypes.shape({
+    root: PropTypes.func,
+    item: PropTypes.func,
+  }),
+};
+
+Masonry.defaultProps = {
+  overrides: {},
+  gutterWidth: 0,
+  gutterHeight: 0,
+};
+
+const root = props => ({
   display: 'block',
   listStyle: 'none',
   paddingLeft: 0,
-  marginTop: 0,
-  marginBottom: 0,
-  marginRight: props.gutterWidth ? `${(props.gutterWidth / 2) * -1}rem` : 0,
-  marginLeft: props.gutterWidth ? `${(props.gutterWidth / 2) * -1}rem` : 0,
-  ...props.overrides.masonry && props.overrides.masonry(props),
+  marginTop: props.margin && !props.margin.top && 0,
+  marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
+  marginRight: props.gutterWidth ? props.theme.calculateSpacing((props.gutterWidth / 2) * -1) : 0,
+  marginLeft: props.gutterWidth ? props.theme.calculateSpacing((props.gutterWidth / 2) * -1) : 0,
+  ...props.overrides.root && props.overrides.root(props),
 });
 
 const item = props => ({
@@ -89,6 +91,6 @@ const item = props => ({
 });
 
 export default withMargins(connect({
-  masonry,
+  root,
   item,
 })(Masonry));

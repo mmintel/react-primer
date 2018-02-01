@@ -3,7 +3,7 @@ import { Masonry, Image } from '../../src';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-export default storiesOf('Elements', module)
+export default storiesOf('Components', module)
   .add('Masonry', () => {
     const columns = number('Columns', 4);
     const gutterWidth = number('Gutter Width', 1);

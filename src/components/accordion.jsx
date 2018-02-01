@@ -15,7 +15,7 @@ class Accordion extends React.Component {
 
   render() {
     const { activeItem } = this.state;
-    const { tag = 'div', children, ...props } = this.props;
+    const { tag = 'div', children, margin, ...props } = this.props;
     const Tag = tag;
 
     const childrenWithProps = React.Children.map(children,

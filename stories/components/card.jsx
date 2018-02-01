@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 
 import { Card, CardHeader, CardBody, CardFooter, Image, Button } from '../../src';
 
-export default storiesOf('Elements', module)
+export default storiesOf('Components', module)
   .add('Card', () => {
     const level = number('Level', 0);
     return (

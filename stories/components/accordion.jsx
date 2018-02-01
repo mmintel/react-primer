@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Accordion, Expand } from '../../src';
 
-export default storiesOf('Elements', module)
+export default storiesOf('Components', module)
   .add('Accordion', () => {
     return (
       <Accordion>

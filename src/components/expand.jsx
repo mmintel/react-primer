@@ -26,7 +26,6 @@ export default class Expand extends React.Component {
   }
 }
 
-
 const toggler = props => ({
   cursor: 'pointer',
   display: 'flex',
@@ -42,7 +41,7 @@ const View = withMargins(connect({
   toggler,
   content,
 })(
-  ({ tag = 'div', styles, children, className, active, index, toggler, onToggle, ...props }) => {
+  ({ tag = 'div', styles, children, margin, className, active, index, toggler, onToggle, ...props }) => {
     const Tag = tag;
 
     return (

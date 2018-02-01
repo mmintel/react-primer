@@ -9,6 +9,7 @@ const Headline = ({
   overrides,
   className,
   children,
+  margin,
   tag = 'h2',
   rules,
   ...props
@@ -27,16 +28,18 @@ const Headline = ({
 Headline.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
-  overrides: PropTypes.func,
+  overrides: PropTypes.shape({
+    root: PropTypes.func,
+  }),
   className: PropTypes.string,
   styles: PropTypes.object,
 };
 
 const headline = props => ({
   display: 'block',
-  marginTop: 0,
-  marginBottom: 0,
-  ...props.overrides && props.overrides(props),
+  marginTop: props.margin && !props.margin.top ? props.theme.calculateSpacing(0) : 0,
+  marginBottom: props.margin && !props.margin.bottom ? props.theme.calculateSpacing(0) : 0,
+  ...props.overrides && props.overrides.root(props),
 });
 
 export default withMargins(connect({

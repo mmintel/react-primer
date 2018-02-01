@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 
 import { Button, ButtonGroup } from '../../src';
 
-export default storiesOf('Elements', module)
+export default storiesOf('Components', module)
   .add('Button Group', () => {
     return (
       <div>

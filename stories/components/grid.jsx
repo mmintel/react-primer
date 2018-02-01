@@ -2,14 +2,9 @@ import React from 'react';
 import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { Row, Column } from '../../src';
+import Box from '../doc/box';
 
-const Box = ({ children }) => (
-  <div style={{ backgroundColor: '#EFEFEF', padding: '1rem' }}>
-    { children }
-  </div>
-);
-
-export default storiesOf('Elements', module)
+export default storiesOf('Components', module)
   .add('Grid', () => {
     const gutter = number('Gutter', 2);
     const valign = select('Valign', ['top', 'center', 'bottom']);

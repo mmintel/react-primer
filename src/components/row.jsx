@@ -26,7 +26,7 @@ const Row = ({
     }));
   return (
     <Tag
-      className={classnames(styles.row, className)}
+      className={classnames(styles.root, className)}
       {...props}
     >
       { childrenWithProps }
@@ -39,7 +39,7 @@ Row.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   className: PropTypes.string,
   styles: PropTypes.shape({
-    row: PropTypes.string,
+    root: PropTypes.string,
   }).isRequired,
   basis: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   align: PropTypes.oneOf(['left', 'center', 'right', 'between', 'around']),
@@ -47,7 +47,9 @@ Row.propTypes = {
   gutter: PropTypes.number,
   wrap: PropTypes.bool,
   reverse: PropTypes.bool,
-  overrides: PropTypes.func,
+  overrides: PropTypes.shape({
+    root: PropTypes.func,
+  }),
 };
 
 Row.defaultProps = {
@@ -62,7 +64,7 @@ Row.defaultProps = {
   overrides: undefined,
 };
 
-const row = props => ({
+const root = props => ({
   display: 'flex',
   flexDirection: props.reverse ? 'row-reverse' : 'row',
   flexWrap: props.wrap && 'wrap',
@@ -90,11 +92,11 @@ const row = props => ({
         return valign;
     }
   })(props.valign),
-  marginLeft: `${(props.gutter / 2) * -1}rem`,
-  marginRight: `${(props.gutter / 2) * -1}rem`,
-  ...props.overrides && props.overrides(props),
+  marginLeft: props.theme.calculateSpacing((props.gutterWidth / 2) * -1),
+  marginRight: props.theme.calculateSpacing((props.gutterWidth / 2) * -1),
+  ...props.overrides && props.overrides.root(props),
 });
 
 export default withMargins(connect({
-  row,
+  root,
 })(Row));

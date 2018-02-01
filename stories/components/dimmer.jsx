@@ -4,7 +4,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 
-export default storiesOf('Elements', module)
+export default storiesOf('Components', module)
   .add('Dimmer', () => {
     const enabled = boolean('Enabled', true);
     return (

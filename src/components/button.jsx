@@ -8,6 +8,7 @@ const Button = ({
   tag,
   styles,
   overrides,
+  margin,
   size,
   className,
   children,

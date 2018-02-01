@@ -6,13 +6,13 @@ import TestIcon from 'react-icons/lib/md/check';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 
-export default storiesOf('Elements', module)
+export default storiesOf('Components', module)
   .add('Button', () => {
     const disabled = boolean('Disabled', false);
     const block = boolean('Block', false);
     const label = text('Text', 'I am a button');
     const href = text('Href', 'http://...');
-    const size = number('Size', 0);
+    const size = number('Size', -2);
     const useOverrides = boolean('Use Overrides', false);
     const style = object('Overrides', {
       backgroundColor: '#2185d0',
@@ -21,7 +21,7 @@ export default storiesOf('Elements', module)
       },
     });
     const overrides = {
-      button(props) {
+      root(props) {
         return style
       }
     };

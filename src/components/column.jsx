@@ -9,6 +9,7 @@ const Column = ({
   styles,
   className,
   children,
+  margin,
   gutter,
   basis,
   overrides,
@@ -48,9 +49,9 @@ const column = props => ({
   flexGrow: props.basis ? 0 : 1,
   flexShrink: 0,
   flexBasis: props.basis ? props.basis : 0,
-  paddingLeft: `${props.gutter / 2}rem`,
-  paddingRight: `${props.gutter / 2}rem`,
-  marginBottom: `${props.gutter}rem`,
+  paddingLeft: props.theme.calculateSpacing(props.gutter / 2),
+  paddingRight: props.theme.calculateSpacing(props.gutter / 2),
+  marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
   ...props.overrides && props.overrides(props),
 });
 

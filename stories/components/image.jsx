@@ -3,7 +3,7 @@ import { boolean, number, object, select, text, withKnobs } from '@storybook/add
 import { Image } from '../../src';
 import { storiesOf } from '@storybook/react';
 
-export default storiesOf('Elements', module)
+export default storiesOf('Components', module)
   .add('Image', () => {
     const fluid = boolean('Fluid', true);
     const stretch = boolean('Stretch', true);

@@ -4,52 +4,74 @@ import { connect } from 'react-fela';
 import cn from 'classnames';
 
 function withMargins(WrappedComponent) {
-  const StyledComponent = ({ m, styles, className, ...props }) => {
-    return <WrappedComponent className={cn(styles.margin, className)} {...props} />;
+  const ComponentWithMargin = ({ margin, styles, className, ...props }) =>
+    <WrappedComponent className={cn(styles.margin, className)} margin={margin} {...props} />;
+
+  ComponentWithMargin.propTypes = {
+    className: PropTypes.string,
+    styles: PropTypes.shape({
+      margin: PropTypes.string,
+    }).isRequired,
+    margin: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({
+      top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      bottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    })]),
   };
 
-  StyledComponent.propTypes = {
-    m: PropTypes.shape({
-      t: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      r: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      b: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      l: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    })
+  ComponentWithMargin.defaultProps = {
+    margin: undefined,
+    className: undefined,
+  };
+
+  function getMargin(theme, margin) {
+    if (typeof margin === 'number') {
+      return theme.calculateSpacing(margin);
+    } else if (margin === 'auto') {
+      return 'auto';
+    }
+    return new Error('Invalid value for margin.');
   }
 
-  StyledComponent.defaultProps = {
-    m: undefined,
-  };
-
-  function margins(theme, t, r, b, l) {
-    return {
-      marginTop: t && (typeof t === 'number' ? theme.calculateSpacing(t) : 'auto'),
-      marginRight: r && (typeof r === 'number' ? theme.calculateSpacing(r) : 'auto'),
-      marginBottom: b && (typeof b === 'number' ? theme.calculateSpacing(b) : 'auto'),
-      marginLeft: l && (typeof l === 'number' ? theme.calculateSpacing(l) : 'auto'),
-    };
+  function margins(theme, top, right, bottom, left) {
+    const styles = {};
+    if (top !== undefined) {
+      styles.marginTop = getMargin(theme, top);
+    }
+    if (right !== undefined) {
+      styles.marginRight = getMargin(theme, right);
+    }
+    if (bottom !== undefined) {
+      styles.marginBottom = getMargin(theme, bottom);
+    }
+    if (left !== undefined) {
+      styles.marginLeft = getMargin(theme, left);
+    }
+    return styles;
   }
 
   function transformMediaQueries(theme, media) {
     const rules = {};
     for (let item in media) {
-      rules[item] = margins(theme, media[item].t, media[item].r, media[item].b, media[item].l)
+      rules[item] = margins(theme, media[item].top, media[item].right, media[item].bottom, media[item].left)
     }
     return rules;
   }
 
-  const margin = ({ m, theme }) => {
-    if (!m) return;
-    const { t, r, b, l, ...mq } = m;
+  const margin = ({ margin, theme }) => {
+    if (!margin) return {};
+    console.log(margin)
+    const { top, right, bottom, left, ...mq } = margin;
     return {
-      ...margins(theme, t, r, b, l),
+      ...margins(theme, top, right, bottom, left),
       ...transformMediaQueries(theme, mq),
     }
   };
 
   return connect({
     margin,
-  })(StyledComponent);
+  })(ComponentWithMargin);
 }
 
 export default withMargins;
