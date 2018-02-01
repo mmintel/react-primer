@@ -61,7 +61,6 @@ function withMargins(WrappedComponent) {
 
   const margin = ({ margin, theme }) => {
     if (!margin) return {};
-    console.log(margin)
     const { top, right, bottom, left, ...mq } = margin;
     return {
       ...margins(theme, top, right, bottom, left),
