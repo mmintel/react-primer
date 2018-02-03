@@ -26,27 +26,25 @@ export default class Expand extends React.Component {
   }
 }
 
-const toggler = props => ({
-  cursor: 'pointer',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
+const rules = props => ({
+  root: {
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  content: {
+    display: props.active ? 'block' : 'none',
+  }
 });
 
-const content = props => ({
-  display: props.active ? 'block' : 'none',
-});
-
-const View = withMargins(connect({
-  toggler,
-  content,
-})(
-  ({ tag = 'div', styles, children, margin, className, active, index, toggler, onToggle, ...props }) => {
+const View = withMargins(connect(rules)(
+  ({ tag = 'div', styles, children, margin, className, active, index, toggler, onToggle, rules, ...props }) => {
     const Tag = tag;
 
     return (
       <Tag className={cn(className)} {...props}>
-        <div onClick={e => onToggle(e, index)} className={styles.toggler}>
+        <div onClick={e => onToggle(e, index)} className={styles.root}>
           { toggler }
         </div>
         <div className={styles.content}>

@@ -17,7 +17,6 @@ const root = props => ({
   boxShadow: props.level > 0 && props.theme.shadow[props.level],
   marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
   marginTop: props.margin && !props.margin.top && props.theme.calculateSpacing(0),
-  ...props.overrides && props.overrides.root(props),
 });
 
 const header = props => ({
@@ -46,7 +45,7 @@ const footer = props => ({
   borderTop: `1px solid ${props.theme.color.gray.light.string()}`,
 });
 
-const Card = ({ styles, children, className, margin, ...props }) => (
+const Card = ({ styles, children, className, margin, rules, ...props }) => (
   <div className={cn(styles.root, className)} {...props}>
     { children }
   </div>
@@ -58,19 +57,19 @@ Card.defaultProps = {
 
 export default withMargins(connect({ root })(Card));
 
-export const CardHeader = connect({ header })(({ styles, children, ...props }) => (
+export const CardHeader = connect({ header })(({ styles, children, rules, ...props }) => (
   <header className={styles.header} {...props}>
     {children}
   </header>
 ));
 
-export const CardBody = connect({ body })(({ styles, children, ...props }) => (
+export const CardBody = connect({ body })(({ styles, children, rules, ...props }) => (
   <div className={styles.body} {...props}>
     {children}
   </div>
 ));
 
-export const CardFooter = connect({ footer })(({ styles, children, ...props }) => (
+export const CardFooter = connect({ footer })(({ styles, children, rules, ...props }) => (
   <footer className={styles.footer} {...props}>
     {children}
   </footer>

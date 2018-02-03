@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
+import { connect } from 'react-fela';
 import { withMargins } from '../';
 
 class Accordion extends React.Component {
@@ -15,7 +16,7 @@ class Accordion extends React.Component {
 
   render() {
     const { activeItem } = this.state;
-    const { tag = 'div', children, margin, ...props } = this.props;
+    const { tag = 'div', children, margin, rules, ...props } = this.props;
     const Tag = tag;
 
     const childrenWithProps = React.Children.map(children,
@@ -34,4 +35,6 @@ class Accordion extends React.Component {
   }
 }
 
-export default withMargins(Accordion);
+const rules = props => ({})
+
+export default withMargins(connect(rules)(Accordion));

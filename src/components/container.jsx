@@ -9,7 +9,7 @@ const Container = ({
   styles,
   className,
   children,
-  overrides,
+  rules,
   ...props
 }) => {
   const Tag = tag;
@@ -30,29 +30,26 @@ Container.propTypes = {
     root: PropTypes.string,
   }).isRequired,
   className: PropTypes.string,
-  overrides: PropTypes.func,
 };
 
 Container.defaultProps = {
   tag: 'div',
   children: undefined,
   className: undefined,
-  overrides: undefined,
 };
 
-const root = props => ({
-  display: 'block',
-  boxSizing: 'border-box',
-  width: '100%',
-  maxWidth: '1200px',
-  minWidth: '280px',
-  paddingLeft: props.theme.calculateSpacing(2),
-  paddingRight: props.theme.calculateSpacing(2),
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  ...props.overrides && props.overrides(props),
+const rules = props => ({
+  root: {
+    display: 'block',
+    boxSizing: 'border-box',
+    width: '100%',
+    maxWidth: '1200px',
+    minWidth: '280px',
+    paddingLeft: props.theme.calculateSpacing(2),
+    paddingRight: props.theme.calculateSpacing(2),
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
 });
 
-export default connect({
-  root,
-})(Container);
+export default connect(rules)(Container);

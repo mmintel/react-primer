@@ -12,6 +12,7 @@ const Image = ({
   fluid,
   stretch,
   round,
+  rules,
   ...props
 }) => (
   <img
@@ -27,34 +28,26 @@ Image.propTypes = {
   fluid: PropTypes.bool,
   stretch: PropTypes.bool,
   round: PropTypes.bool,
-  overrides: PropTypes.shape({
-    root: PropTypes.func,
-  }),
 };
 
-Image.defaultProps = {
-  overrides: undefined,
-};
-
-const root = props => ({
-  ...props.fluid && ({
-    display: 'block',
-    maxWidth: '100%',
-  }),
-  ...props.stretch && ({
-    display: 'block',
-    width: '100%',
-  }),
-  ...props.round && ({
-    borderRadius: '100%',
-  }),
-  marginTop: props.margin && !props.margin.top && props.theme.calculateSpacing(0),
-  marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
-  marginRight: props.margin && !props.margin.right && props.theme.calculateSpacing(0),
-  marginLeft: props.margin && !props.margin.left && props.theme.calculateSpacing(0),
-  ...props.overrides && props.overrides.root(props),
+const rules = props => ({
+  root: {
+    ...props.fluid && ({
+      display: 'block',
+      maxWidth: '100%',
+    }),
+    ...props.stretch && ({
+      display: 'block',
+      width: '100%',
+    }),
+    ...props.round && ({
+      borderRadius: '100%',
+    }),
+    marginTop: props.margin && !props.margin.top && props.theme.calculateSpacing(0),
+    marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
+    marginRight: props.margin && !props.margin.right && props.theme.calculateSpacing(0),
+    marginLeft: props.margin && !props.margin.left && props.theme.calculateSpacing(0),
+  },
 });
 
-export default withMargins(connect({
-  root,
-})(Image));
+export default withMargins(connect(rules)(Image));

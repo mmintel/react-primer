@@ -12,13 +12,13 @@ const Column = ({
   margin,
   gutter,
   basis,
-  overrides,
+  rules,
   ...props
 }) => {
   const Tag = tag;
   return (
     <Tag
-      className={classnames(styles.column, className)}
+      className={classnames(styles.root, className)}
       {...props}
     >
       { children }
@@ -34,27 +34,24 @@ Column.propTypes = {
   }).isRequired,
   className: PropTypes.string,
   gutter: PropTypes.number,
-  overrides: PropTypes.func,
 };
 
 Column.defaultProps = {
   tag: 'div',
   gutter: 2,
-  overrides: undefined,
   className: undefined,
 };
 
-const column = props => ({
-  boxSizing: 'border-box',
-  flexGrow: props.basis ? 0 : 1,
-  flexShrink: 0,
-  flexBasis: props.basis ? props.basis : 0,
-  paddingLeft: props.theme.calculateSpacing(props.gutter / 2),
-  paddingRight: props.theme.calculateSpacing(props.gutter / 2),
-  marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
-  ...props.overrides && props.overrides(props),
+const rules = props => ({
+  root: {
+    boxSizing: 'border-box',
+    flexGrow: props.basis ? 0 : 1,
+    flexShrink: 0,
+    flexBasis: props.basis ? props.basis : 0,
+    paddingLeft: props.theme.calculateSpacing(props.gutter / 2),
+    paddingRight: props.theme.calculateSpacing(props.gutter / 2),
+    marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
+  },
 });
 
-export default withMargins(connect({
-  column,
-})(Column));
+export default withMargins(connect(rules)(Column));

@@ -1,5 +1,5 @@
 import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
-import { Container } from '../../es';
+import { Container } from '../../src';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 

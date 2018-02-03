@@ -15,7 +15,7 @@ const Row = ({
   basis,
   align,
   valign,
-  overrides,
+  rules,
   ...props
 }) => {
   const Tag = tag;
@@ -47,9 +47,6 @@ Row.propTypes = {
   gutter: PropTypes.number,
   wrap: PropTypes.bool,
   reverse: PropTypes.bool,
-  overrides: PropTypes.shape({
-    root: PropTypes.func,
-  }),
 };
 
 Row.defaultProps = {
@@ -61,42 +58,40 @@ Row.defaultProps = {
   reverse: false,
   basis: undefined,
   className: undefined,
-  overrides: undefined,
 };
 
-const root = props => ({
-  display: 'flex',
-  flexDirection: props.reverse ? 'row-reverse' : 'row',
-  flexWrap: props.wrap && 'wrap',
-  justifyContent: ((align) => {
-    switch (align) {
-      case 'left':
+const rules = props => ({
+  root: {
+    display: 'flex',
+    flexDirection: props.reverse ? 'row-reverse' : 'row',
+    flexWrap: props.wrap && 'wrap',
+    justifyContent: ((align) => {
+      switch (align) {
+        case 'left':
         return 'flex-start';
-      case 'right':
+        case 'right':
         return 'flex-end';
-      case 'between':
+        case 'between':
         return 'space-between';
-      case 'around':
+        case 'around':
         return 'space-around';
-      default:
+        default:
         return align;
-    }
-  })(props.align),
-  alignItems: ((valign) => {
-    switch (valign) {
-      case 'top':
+      }
+    })(props.align),
+    alignItems: ((valign) => {
+      switch (valign) {
+        case 'top':
         return 'flex-start';
-      case 'bottom':
+        case 'bottom':
         return 'flex-end';
-      default:
+        default:
         return valign;
-    }
-  })(props.valign),
-  marginLeft: props.theme.calculateSpacing((props.gutterWidth / 2) * -1),
-  marginRight: props.theme.calculateSpacing((props.gutterWidth / 2) * -1),
-  ...props.overrides && props.overrides.root(props),
+      }
+    })(props.valign),
+    marginLeft: props.theme.calculateSpacing((props.gutterWidth / 2) * -1),
+    marginRight: props.theme.calculateSpacing((props.gutterWidth / 2) * -1),
+  }
 });
 
-export default withMargins(connect({
-  root,
-})(Row));
+export default withMargins(connect(rules)(Row));

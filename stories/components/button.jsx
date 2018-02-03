@@ -13,14 +13,14 @@ export default storiesOf('Components', module)
     const label = text('Text', 'I am a button');
     const href = text('Href', 'http://...');
     const size = number('Size', -2);
-    const useOverrides = boolean('Use Overrides', false);
-    const style = object('Overrides', {
+    const useExtend = boolean('Use Extend (doc only)', false);
+    const style = object('Extend', {
       backgroundColor: '#2185d0',
       '&:hover': {
         backgroundColor: '#1678c2',
       },
     });
-    const overrides = {
+    const extend = {
       root(props) {
         return style
       }
@@ -39,17 +39,32 @@ export default storiesOf('Components', module)
       after = null;
     }
     return (
-      <Button
-        disabled={disabled}
-        block={block}
-        href={href}
-        overrides={useOverrides ? overrides : {}}
-        before={before}
-        after={after}
-        size={size}
-        onClick={action('clicked')}
-      >
-        {label}
-      </Button>
+      <div>
+        <Button
+          disabled={disabled}
+          block={block}
+          href={href}
+          extend={useExtend ? extend : {}}
+          before={before}
+          after={after}
+          size={size}
+          onClick={action('clicked')}
+          >
+            {label}
+          </Button>
+          <Button
+            disabled={disabled}
+            block={block}
+            href={href}
+            extend={useExtend ? extend : {}}
+            before={before}
+            after={after}
+            size={size}
+            onClick={action('clicked')}
+            margin={{ left: 1 }}
+            >
+              {label}
+            </Button>
+      </div>
     );
   })

@@ -7,7 +7,7 @@ import { withMargins } from '../';
 const Button = ({
   tag,
   styles,
-  overrides,
+  rules,
   margin,
   size,
   className,
@@ -23,6 +23,7 @@ const Button = ({
     <Tag
       className={classnames(styles.root, className)}
       role={props.href && 'button'}
+      href={href}
       {...props}
     >
       {before &&
@@ -58,12 +59,6 @@ Button.propTypes = {
     before: PropTypes.string,
     after: PropTypes.string,
   }).isRequired,
-  overrides: PropTypes.shape({
-    root: PropTypes.func,
-    text: PropTypes.func,
-    before: PropTypes.func,
-    after: PropTypes.func,
-  }),
   block: PropTypes.bool,
   disabled: PropTypes.bool,
 };
@@ -78,88 +73,62 @@ Button.defaultProps = {
   size: -2,
   block: false,
   disabled: false,
-  overrides: {},
 };
 
-const root = props => ({
-  backgroundColor: props.theme.color.gray.light.string(),
-  paddingTop: props.theme.calculateSpacing(props.size),
-  paddingRight: props.theme.calculateSpacing(props.size),
-  paddingBottom: props.theme.calculateSpacing(props.size),
-  paddingLeft: props.theme.calculateSpacing(props.size),
-  borderColor: props.theme.color.gray.medium.string(),
-  borderRadius: props.theme.radius,
-  borderWidth: props.theme.border.width,
-  fontSize: props.theme.calculateSize(props.size),
-  appearance: 'none',
-  display: 'inline-block',
-  boxSizing: 'border-box',
-  borderStyle: 'solid',
-  textTransform: 'uppercase',
-  textDecoration: 'inherit',
-  fontFamily: 'inherit',
-  textAlign: 'center',
-  color: 'inherit',
-  cursor: 'pointer',
-  userSelect: 'none',
-  ':hover': {
-    backgroundColor: props.theme.color.gray.medium.string(),
-  },
-  ':focus': {
-    outline: 'none',
-  },
-  ...(props.before || props.after) && ({
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }),
-  ...props.block && ({
-    display: props.before || props.after ? 'flex' : 'block',
-    width: '100%',
-  }),
-  '[disabled]': {
-    cursor: 'not-allowed',
-    backgroundColor: props.theme.color.gray.light.alpha(0.5).string(),
-    '&:hover': {
+const rules = props => ({
+  root: {
+    backgroundColor: props.theme.color.gray.light.string(),
+    paddingTop: props.theme.calculateSpacing(props.size),
+    paddingRight: props.theme.calculateSpacing(props.size),
+    paddingBottom: props.theme.calculateSpacing(props.size),
+    paddingLeft: props.theme.calculateSpacing(props.size),
+    borderColor: props.theme.color.gray.medium.string(),
+    borderRadius: props.theme.radius,
+    borderWidth: props.theme.border.width,
+    fontSize: props.theme.calculateSize(props.size),
+    appearance: 'none',
+    display: 'inline-block',
+    boxSizing: 'border-box',
+    borderStyle: 'solid',
+    textTransform: 'uppercase',
+    textDecoration: 'inherit',
+    fontFamily: 'inherit',
+    textAlign: 'center',
+    color: 'inherit',
+    cursor: 'pointer',
+    userSelect: 'none',
+    ':hover': {
+      backgroundColor: props.theme.color.gray.medium.string(),
+    },
+    ':focus': {
+      outline: 'none',
+    },
+    ...(props.before || props.after) && ({
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }),
+    ...props.block && ({
+      display: props.before || props.after ? 'flex' : 'block',
+      width: '100%',
+    }),
+    '[disabled]': {
+      cursor: 'not-allowed',
       backgroundColor: props.theme.color.gray.light.alpha(0.5).string(),
+      '&:hover': {
+        backgroundColor: props.theme.color.gray.light.alpha(0.5).string(),
+      },
     },
   },
-  ...props.overrides.root && props.overrides.root(props),
-});
-
-const text = props => ({
-  display: 'block',
-  ...(props.before || props.after) && ({
-    flexGrow: 1,
-  }),
-  ...(props.before && props.after) && ({
-    flexGrow: 0,
-  }),
-  ...props.overrides.text && props.overrides.text(props),
-});
-
-const beforeAndAfter = ({ size }) => {
-  const s = size || 0;
-  return {
-    ...(s || s === 0) && ({
-
+  text: {
+    display: 'block',
+    ...(props.before || props.after) && ({
+      flexGrow: 1,
     }),
-  };
-};
-
-const before = props => ({
-  ...beforeAndAfter(props),
-  ...props.overrides.before && props.overrides.before(props),
+    ...(props.before && props.after) && ({
+      flexGrow: 0,
+    }),
+  },
 });
 
-const after = props => ({
-  ...beforeAndAfter(props),
-  ...props.overrides.after && props.overrides.after(props),
-});
-
-export default withMargins(connect({
-  root,
-  text,
-  before,
-  after,
-})(Button));
+export default withMargins(connect(rules)(Button));

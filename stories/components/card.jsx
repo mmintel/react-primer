@@ -10,7 +10,7 @@ export default storiesOf('Components', module)
     const level = number('Level', 0);
     return (
       <div>
-        <Card level={level} m={{ b: 1, '@media(min-width: 700px)': { t: 2 }, '@media(min-width: 1000px)': { l: 2 } }}>
+        <Card level={level} margin={{ bottom: 1 }}>
           <CardHeader>Test</CardHeader>
           <Image stretch src="http://24.media.tumblr.com/tumblr_lyzlrzTBr71r6b7kmo1_500.jpg" />
           <CardBody>

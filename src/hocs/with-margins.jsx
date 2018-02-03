@@ -4,8 +4,8 @@ import { connect } from 'react-fela';
 import cn from 'classnames';
 
 function withMargins(WrappedComponent) {
-  const ComponentWithMargin = ({ margin, styles, className, ...props }) =>
-    <WrappedComponent className={cn(styles.margin, className)} margin={margin} {...props} />;
+  const ComponentWithMargin = ({ margin, rules, ...props }) =>
+    <WrappedComponent extend={rules} margin={margin} {...props} />;
 
   ComponentWithMargin.propTypes = {
     className: PropTypes.string,
@@ -59,18 +59,18 @@ function withMargins(WrappedComponent) {
     return rules;
   }
 
-  const margin = ({ margin, theme }) => {
+  const rules = ({ margin, theme }) => {
     if (!margin) return {};
     const { top, right, bottom, left, ...mq } = margin;
     return {
-      ...margins(theme, top, right, bottom, left),
-      ...transformMediaQueries(theme, mq),
+      root: {
+        ...margins(theme, top, right, bottom, left),
+        ...transformMediaQueries(theme, mq),
+      }
     }
   };
 
-  return connect({
-    margin,
-  })(ComponentWithMargin);
+  return connect(rules)(ComponentWithMargin);
 }
 
 export default withMargins;

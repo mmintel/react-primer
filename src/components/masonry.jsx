@@ -55,42 +55,33 @@ Masonry.propTypes = {
   columns: PropTypes.number,
   gutterWidth: PropTypes.number,
   gutterHeight: PropTypes.number,
-  style: PropTypes.shape({
+  styles: PropTypes.shape({
     root: PropTypes.string,
   }).isRequired,
-  overrides: PropTypes.shape({
-    root: PropTypes.func,
-    item: PropTypes.func,
-  }),
 };
 
 Masonry.defaultProps = {
-  overrides: {},
   gutterWidth: 0,
   gutterHeight: 0,
 };
 
-const root = props => ({
-  display: 'block',
-  listStyle: 'none',
-  paddingLeft: 0,
-  marginTop: props.margin && !props.margin.top && 0,
-  marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
-  marginRight: props.gutterWidth ? props.theme.calculateSpacing((props.gutterWidth / 2) * -1) : 0,
-  marginLeft: props.gutterWidth ? props.theme.calculateSpacing((props.gutterWidth / 2) * -1) : 0,
-  ...props.overrides.root && props.overrides.root(props),
+const rules = props => ({
+  root: {
+    display: 'block',
+    listStyle: 'none',
+    paddingLeft: 0,
+    marginTop: props.margin && !props.margin.top && 0,
+    marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
+    marginRight: props.gutterWidth ? props.theme.calculateSpacing((props.gutterWidth / 2) * -1) : 0,
+    marginLeft: props.gutterWidth ? props.theme.calculateSpacing((props.gutterWidth / 2) * -1) : 0,
+  },
+  item: {
+    display: 'block',
+    boxSizing: 'border-box',
+    paddingRight: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
+    paddingLeft: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
+    paddingBottom: props.gutterHeight ? `${props.gutterHeight}rem` : 0,
+  }
 });
 
-const item = props => ({
-  display: 'block',
-  boxSizing: 'border-box',
-  paddingRight: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
-  paddingLeft: props.gutterWidth ? `${props.gutterWidth / 2}rem` : 0,
-  paddingBottom: props.gutterHeight ? `${props.gutterHeight}rem` : 0,
-  ...props.overrides.item && props.overrides.item(props),
-});
-
-export default withMargins(connect({
-  root,
-  item,
-})(Masonry));
+export default withMargins(connect(rules)(Masonry));

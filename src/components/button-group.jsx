@@ -10,14 +10,14 @@ const ButtonGroup = ({
   className,
   children,
   margin,
-  overrides,
+  rules,
   ...props
 }) => {
   const Tag = tag;
   const childrenWithProps = React.Children.map(children,
    child => React.cloneElement(child, {
-     overrides: {
-       root: () => ({
+     extend: {
+       root: {
          '&:first-child': {
            borderTopRightRadius: 0,
            borderBottomRightRadius: 0,
@@ -31,7 +31,7 @@ const ButtonGroup = ({
            borderTopLeftRadius: 0,
            borderBottomLeftRadius: 0,
          },
-       }),
+       },
      },
    }),
   );
@@ -52,23 +52,18 @@ ButtonGroup.propTypes = {
   }).isRequired,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   className: PropTypes.string,
-  overrides: PropTypes.shape({
-    root: PropTypes.func.isRequired,
-  }),
 };
 
 ButtonGroup.defaultProps = {
   tag: 'div',
-  overrides: undefined,
   children: undefined,
   className: undefined,
 };
 
-const root = props => ({
-  display: 'inline-flex',
-  ...props.overrides && props.overrides.root(props),
+const rules = props => ({
+  root: {
+    display: 'inline-flex',
+  }
 });
 
-export default withMargins(connect({
-  root,
-})(ButtonGroup));
+export default withMargins(connect(rules)(ButtonGroup));

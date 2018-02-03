@@ -17,7 +17,7 @@ const Headline = ({
   const Tag = tag;
   return (
     <Tag
-      className={classnames(styles.headline, className)}
+      className={classnames(styles.root, className)}
       {...props}
     >
       {children}
@@ -28,20 +28,16 @@ const Headline = ({
 Headline.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
-  overrides: PropTypes.shape({
-    root: PropTypes.func,
-  }),
   className: PropTypes.string,
   styles: PropTypes.object,
 };
 
-const headline = props => ({
-  display: 'block',
-  marginTop: props.margin && !props.margin.top ? props.theme.calculateSpacing(0) : 0,
-  marginBottom: props.margin && !props.margin.bottom ? props.theme.calculateSpacing(0) : 0,
-  ...props.overrides && props.overrides.root(props),
+const rules = props => ({
+  root: {
+    display: 'block',
+    marginTop: props.margin && !props.margin.top ? props.theme.calculateSpacing(0) : 0,
+    marginBottom: props.margin && !props.margin.bottom ? props.theme.calculateSpacing(0) : 0,
+  },
 });
 
-export default withMargins(connect({
-  headline,
-})(Headline));
+export default withMargins(connect(rules)(Headline));
