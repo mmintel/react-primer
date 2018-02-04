@@ -12,6 +12,7 @@ const Headline = ({
   margin,
   tag = 'h2',
   rules,
+  size,
   ...props
 }) => {
   const Tag = tag;
@@ -30,11 +31,13 @@ Headline.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
   className: PropTypes.string,
   styles: PropTypes.object,
+  size: PropTypes.number,
 };
 
 const rules = props => ({
   root: {
     display: 'block',
+    fontSize: props.theme.calculateSize(props.size),
     marginTop: props.margin && !props.margin.top ? props.theme.calculateSpacing(0) : 0,
     marginBottom: props.margin && !props.margin.bottom ? props.theme.calculateSpacing(0) : 0,
   },
