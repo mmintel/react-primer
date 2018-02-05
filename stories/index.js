@@ -7,6 +7,7 @@ import './components/dimmer';
 import './components/expand';
 import './components/grid';
 import './components/headline';
+import './components/input';
 import './components/image';
 import './components/loading';
 import './components/masonry';

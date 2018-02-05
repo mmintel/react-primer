@@ -7,7 +7,9 @@ export default {
   calculateSize: size => `${Math.min(Math.max(ms(size, {
     base: 1,
   }), 0.5), 5)}rem`,
-  calculateSpacing: spacing => `${ms(spacing, {
+  calculateSpacing: (spacing, negative) => `${negative ? ms(spacing, {
+    base: 1,
+  }) * -1 : ms(spacing, {
     base: 1,
   })}rem`,
   radius: '0.5rem',
