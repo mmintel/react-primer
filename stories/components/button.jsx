@@ -2,7 +2,7 @@ import { boolean, number, object, select, text, withKnobs } from '@storybook/add
 
 import { Button } from '../../src';
 import React from 'react';
-import TestIcon from 'react-icons/lib/md/check';
+import TestIcon from 'react-icons/lib/md/adjust';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 
@@ -12,7 +12,7 @@ export default storiesOf('Components', module)
     const block = boolean('Block', false);
     const label = text('Text', 'I am a button');
     const href = text('Href', 'http://...');
-    const size = number('Size', -2);
+    const size = number('Size', 0);
     const useExtend = boolean('Use Extend (doc only)', false);
     const style = object('Extend', {
       backgroundColor: '#2185d0',
@@ -26,17 +26,17 @@ export default storiesOf('Components', module)
       }
     };
 
-    let before = select('Before', ['-', 'Test-Icon'], '-');
-    let after = select('After', ['-', 'Test-Icon'], '-');
-    if (before === 'Test-Icon') {
-      before = <TestIcon />;
+    let prepend = select('Prepend', ['-', 'Test-Icon'], '-');
+    let append = select('Append', ['-', 'Test-Icon'], '-');
+    if (prepend === 'Test-Icon') {
+      prepend = <TestIcon />;
     } else {
-      before = null;
+      prepend = null;
     }
-    if (after === 'Test-Icon') {
-      after = <TestIcon />;
+    if (append === 'Test-Icon') {
+      append = <TestIcon />;
     } else {
-      after = null;
+      append = null;
     }
     return (
       <div>
@@ -45,8 +45,8 @@ export default storiesOf('Components', module)
           block={block}
           href={href}
           extend={useExtend ? extend : {}}
-          before={before}
-          after={after}
+          prepend={prepend}
+          append={append}
           size={size}
           onClick={action('clicked')}
           >
@@ -57,8 +57,8 @@ export default storiesOf('Components', module)
             block={block}
             href={href}
             extend={useExtend ? extend : {}}
-            before={before}
-            after={after}
+            prepend={prepend}
+            append={append}
             size={size}
             onClick={action('clicked')}
             margin={{ left: 1 }}

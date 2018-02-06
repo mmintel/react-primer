@@ -6,7 +6,6 @@ import TestIcon from 'react-icons/lib/md/check';
 
 export default storiesOf('Components', module)
   .add('Input', () => {
-    const type = select('Type', ['text', 'password', 'number', 'email', 'hidden', 'search', 'url']);
     let prepend = select('Before', ['-', 'Test-Icon'], '-');
     let append = select('After', ['-', 'Test-Icon'], '-');
     if (prepend === 'Test-Icon') {
@@ -20,6 +19,18 @@ export default storiesOf('Components', module)
       append = null;
     }
     return (
-      <Input prepend={prepend} append={append} type={type} />
+      <div>
+        <Input margin prepend={prepend} append={append} />
+        <Input prepend={prepend} append={append} type="select" values={[
+          {
+            key: 'de',
+            value: 'German',
+          },
+          {
+            key: 'en',
+            value: 'English',
+          },
+        ]} />
+      </div>
     );
   });

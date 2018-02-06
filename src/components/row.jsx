@@ -16,6 +16,8 @@ const Row = ({
   align,
   valign,
   rules,
+  margin,
+  margins,
   ...props
 }) => {
   const Tag = tag;
@@ -23,6 +25,7 @@ const Row = ({
     React.cloneElement(child, {
       gutter,
       basis,
+      margin: child.props.margin || margins,
     }));
   return (
     <Tag
@@ -45,6 +48,7 @@ Row.propTypes = {
   align: PropTypes.oneOf(['left', 'center', 'right', 'between', 'around']),
   valign: PropTypes.oneOf(['top', 'center', 'bottom']),
   gutter: PropTypes.number,
+  margins: PropTypes.bool,
   wrap: PropTypes.bool,
   reverse: PropTypes.bool,
 };
@@ -89,8 +93,8 @@ const rules = props => ({
         return valign;
       }
     })(props.valign),
-    marginLeft: props.theme.calculateSpacing((props.gutterWidth / 2) * -1),
-    marginRight: props.theme.calculateSpacing((props.gutterWidth / 2) * -1),
+    marginLeft: props.theme.calculateSpacing(props.gutter / 2, true),
+    marginRight: props.theme.calculateSpacing(props.gutter / 2, true),
   }
 });
 
