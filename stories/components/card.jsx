@@ -18,7 +18,7 @@ export default storiesOf('Components', module)
             Eius nisi ad deserunt alias recusandae enim facilis, laboriosam atque, placeat iure.
           </CardBody>
           <CardFooter>
-            <Button size={-1}>Submit</Button>
+            <Button size={0.75}>Submit</Button>
           </CardFooter>
         </Card>
         <Card level={level}>

@@ -2,16 +2,12 @@ import ms from 'modularscale-js';
 import Color from 'color';
 
 const shadowOpacity = 0.05;
+const minSize = 0.5;
+const maxSize = 5;
 
 export default {
-  calculateSize: size => `${Math.min(Math.max(ms(size, {
-    base: 1,
-  }), 0.5), 5)}rem`,
-  calculateSpacing: (spacing, negative) => `${negative ? ms(spacing, {
-    base: 1,
-  }) * -1 : ms(spacing, {
-    base: 1,
-  })}rem`,
+  calculateSize: size => `${Math.min(Math.max(size, minSize), maxSize)}rem`,
+  calculateSpacing: spacing => spacing === 0 ? 0 : `${spacing}rem`,
   radius: '0.5rem',
   border: {
     width: '1px',
@@ -26,6 +22,23 @@ export default {
       light: Color('#EEE'),
       lighter: Color('#FAFAFA'),
       lightest: Color('#FEFEFE'),
+    },
+    status: {
+      success: {
+        dark: Color('#155624'),
+        medium: Color('#c3e6cb'),
+        light: Color('#d5eddb'),
+      },
+      error: {
+        dark: Color('#721d4f'),
+        medium: Color('#f5c6cb'),
+        light: Color('#f8d8db'),
+      },
+      warning: {
+        dark: Color('#846834'),
+        medium: Color('#ffeebb'),
+        light: Color('#fff3cd'),
+      },
     },
   },
   level: {

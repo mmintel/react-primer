@@ -50,7 +50,7 @@ const rules = props => ({
     flexBasis: props.basis ? props.basis : 0,
     paddingLeft: props.theme.calculateSpacing(props.gutter / 2),
     paddingRight: props.theme.calculateSpacing(props.gutter / 2),
-    marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
+    marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(1),
   },
 });
 

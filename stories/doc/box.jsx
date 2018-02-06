@@ -14,7 +14,7 @@ const rules = props => ({
     backgroundColor: '#EFEFEF',
     padding: '1rem',
     marginBottom: props.margin && !props.margin.bottom && '1rem',
-  }
+  },
 });
 
 export default withMargins(connect(rules)(Box));

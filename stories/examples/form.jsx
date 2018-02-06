@@ -22,7 +22,7 @@ export default storiesOf('Examples', module)
           </Row>
           <Row>
             <Column margin>
-              <Input prepend={<MailIcon />} placeholder="Email" />
+              <Input prepend={<MailIcon />} placeholder="Email" error="Must be valid format." />
             </Column>
           </Row>
           <Row>

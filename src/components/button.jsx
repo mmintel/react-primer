@@ -70,7 +70,7 @@ Button.defaultProps = {
   className: undefined,
   href: undefined,
   tag: 'button',
-  size: 0,
+  size: 1,
   block: false,
   disabled: false,
 };
@@ -122,8 +122,8 @@ const rules = props => ({
     fontSize: 'inherit',
     lineHeight: 1,
     paddingTop: props.theme.calculateSpacing(props.size / 2),
-    paddingRight: props.theme.calculateSpacing(props.size / 2),
-    paddingBottom: props.theme.calculateSpacing(props.size),
+    paddingRight: props.theme.calculateSpacing(props.size),
+    paddingBottom: props.theme.calculateSpacing(props.size / 2),
     paddingLeft: props.theme.calculateSpacing(props.size),
     ...(props.prepend || props.append) && ({
       flexGrow: 1,

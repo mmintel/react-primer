@@ -93,8 +93,8 @@ const rules = props => ({
         return valign;
       }
     })(props.valign),
-    marginLeft: props.theme.calculateSpacing(props.gutter / 2, true),
-    marginRight: props.theme.calculateSpacing(props.gutter / 2, true),
+    marginLeft: props.theme.calculateSpacing((props.gutter / 2) * -1),
+    marginRight: props.theme.calculateSpacing((props.gutter / 2) * -1),
   }
 });
 

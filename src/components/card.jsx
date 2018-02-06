@@ -15,15 +15,15 @@ const root = props => ({
   borderStyle: 'solid',
   borderColor: props.theme.color.gray.light.string(),
   boxShadow: props.level > 0 && props.theme.shadow[props.level],
-  marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
-  marginTop: props.margin && !props.margin.top && props.theme.calculateSpacing(0),
+  marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(1),
+  marginTop: props.margin && !props.margin.top && props.theme.calculateSpacing(1),
 });
 
 const header = props => ({
-  paddingTop: '1rem',
-  paddingLeft: '1rem',
-  paddingRight: '1rem',
-  paddingBottom: '1rem',
+  paddingTop: props.theme.calculateSpacing(1),
+  paddingLeft: props.theme.calculateSpacing(1),
+  paddingRight: props.theme.calculateSpacing(1),
+  paddingBottom: props.theme.calculateSpacing(1),
   borderBottom: `1px solid ${props.theme.color.gray.light.string()}`,
 });
 

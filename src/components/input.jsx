@@ -13,6 +13,7 @@ const Input = ({
   type,
   values,
   margin,
+  error,
   ...props
 }) => {
   if (type === 'select' && !values) {
@@ -20,26 +21,33 @@ const Input = ({
   }
   return (
     <div className={styles.root}>
-      { prepend &&
-        <div className={cn(styles.affix, styles.prepend)}>
-          {prepend}
-        </div>
-      }
-      { type === 'select' ?
-        <select className={cn(styles.field, styles.select)}>
-          { values.map(item => (
-            <option key={item.key} value={item.key}>{item.value}</option>
-          ))}
-        </select> :
-        <input
-          type={type}
-          className={cn(styles.field, className)}
-          {...props}
-        />
-      }
-      { append &&
-        <div className={cn(styles.affix, styles.append)}>
-          {append}
+      <div className={styles.field}>
+        { prepend &&
+          <div className={cn(styles.affix, styles.prepend)}>
+            {prepend}
+          </div>
+        }
+        { type === 'select' ?
+          <select className={cn(styles.input, styles.select)}>
+            { values.map(item => (
+              <option key={item.key} value={item.key}>{item.value}</option>
+            ))}
+          </select> :
+          <input
+            type={type}
+            className={cn(styles.input, className)}
+            {...props}
+          />
+        }
+        { append &&
+          <div className={cn(styles.affix, styles.append)}>
+            {append}
+          </div>
+        }
+      </div>
+      { error &&
+        <div className={styles.error}>
+          {error}
         </div>
       }
     </div>
@@ -48,6 +56,7 @@ const Input = ({
 
 Input.propTypes = {
   type: PropTypes.oneOf(['text', 'password', 'number', 'email', 'hidden', 'search', 'url', 'select']),
+  error: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   prepend: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   append: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func]),
   values: PropTypes.arrayOf(PropTypes.shape({
@@ -66,6 +75,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   type: 'text',
+  error: undefined,
   values: undefined,
   children: undefined,
   className: undefined,
@@ -74,16 +84,17 @@ Input.defaultProps = {
 };
 
 const rules = props => ({
-  root: {
-    display: 'flex',
-    marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
-  },
+  root: {},
   field: {
+    display: 'flex',
+    marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(1),
+  },
+  input: {
     display: 'block',
     width: '100%',
     boxSizing: 'border-box',
     fontFamily: 'inherit',
-    fontSize: 'inherit',
+    fontSize: props.theme.calculateSize(1),
     appearance: 'none',
     backgroundColor: props.theme.color.white.string(),
     borderTopLeftRadius: props.prepend ? 0 : props.theme.radius,
@@ -96,13 +107,23 @@ const rules = props => ({
     borderBottomWidth: '1px',
     borderLeftWidth: props.prepend ? 0 : '1px',
     borderRightWidth: props.append ? 0 : '1px',
-    paddingTop: props.theme.calculateSpacing(-1),
-    paddingRight: props.theme.calculateSpacing(-1),
-    paddingBottom: props.theme.calculateSpacing(-1),
-    paddingLeft: props.theme.calculateSpacing(-1),
+    paddingTop: props.theme.calculateSpacing(0.5),
+    paddingRight: props.theme.calculateSpacing(0.5),
+    paddingBottom: props.theme.calculateSpacing(0.5),
+    paddingLeft: props.theme.calculateSpacing(0.5),
     ':focus': {
       outline: 'none',
     },
+  },
+  error: {
+    borderRadius: props.theme.radius,
+    backgroundColor: props.theme.color.status.error.light.string(),
+    color: props.theme.color.status.error.dark.string(),
+    marginTop: props.theme.calculateSpacing(0.5),
+    paddingTop: props.theme.calculateSpacing(0.5),
+    paddingRight: props.theme.calculateSpacing(0.5),
+    paddingBottom: props.theme.calculateSpacing(0.5),
+    paddingLeft: props.theme.calculateSpacing(0.5),
   },
   select: {
     cursor: 'context-menu',
@@ -111,10 +132,10 @@ const rules = props => ({
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: props.theme.calculateSpacing(-1),
-    paddingRight: props.theme.calculateSpacing(-1),
-    paddingBottom: props.theme.calculateSpacing(-1),
-    paddingLeft: props.theme.calculateSpacing(-1),
+    paddingTop: props.theme.calculateSpacing(0.5),
+    paddingRight: props.theme.calculateSpacing(0.5),
+    paddingBottom: props.theme.calculateSpacing(0.5),
+    paddingLeft: props.theme.calculateSpacing(0.5),
     backgroundColor: props.theme.color.gray.light.string(),
     borderStyle: 'solid',
     borderColor: props.theme.color.gray.medium.string(),

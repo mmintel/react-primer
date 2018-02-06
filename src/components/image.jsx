@@ -43,10 +43,10 @@ const rules = props => ({
     ...props.round && ({
       borderRadius: '100%',
     }),
-    marginTop: props.margin && !props.margin.top && props.theme.calculateSpacing(0),
-    marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(0),
-    marginRight: props.margin && !props.margin.right && props.theme.calculateSpacing(0),
-    marginLeft: props.margin && !props.margin.left && props.theme.calculateSpacing(0),
+    marginTop: props.margin && !props.margin.top && props.theme.calculateSpacing(1),
+    marginBottom: props.margin && !props.margin.bottom && props.theme.calculateSpacing(1),
+    marginRight: props.margin && !props.margin.right && props.theme.calculateSpacing(1),
+    marginLeft: props.margin && !props.margin.left && props.theme.calculateSpacing(1),
   },
 });
 

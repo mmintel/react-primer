@@ -12,7 +12,7 @@ export default storiesOf('Components', module)
     const block = boolean('Block', false);
     const label = text('Text', 'I am a button');
     const href = text('Href', 'http://...');
-    const size = number('Size', 0);
+    const size = number('Size', 1);
     const useExtend = boolean('Use Extend (doc only)', false);
     const style = object('Extend', {
       backgroundColor: '#2185d0',
