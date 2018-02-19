@@ -7,12 +7,10 @@ import Box from '../doc/box';
 export default storiesOf('Components', module)
   .add('Row', () => {
     const gutter = number('Gutter', 2);
-    const align = select('Align', ['left', 'center', 'right']);
-    const valign = select('Valign', ['top', 'center', 'bottom']);
     const basis = text('Basis', 'calc(100% / 3)');
     return (
       <div>
-        <Row gutter={gutter} valign={valign} align={align} basis={basis}>
+        <Row gutter={gutter} basis={basis}>
           <Column>
             <Box>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, amet!</Box>
           </Column>

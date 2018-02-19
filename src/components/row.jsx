@@ -13,8 +13,6 @@ const Row = ({
   wrap,
   reverse,
   basis,
-  align,
-  valign,
   rules,
   margin,
   margins,
@@ -45,8 +43,6 @@ Row.propTypes = {
     root: PropTypes.string,
   }).isRequired,
   basis: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  align: PropTypes.oneOf(['left', 'center', 'right', 'between', 'around']),
-  valign: PropTypes.oneOf(['top', 'center', 'bottom']),
   gutter: PropTypes.number,
   margins: PropTypes.bool,
   wrap: PropTypes.bool,
@@ -69,30 +65,6 @@ const rules = props => ({
     display: 'flex',
     flexDirection: props.reverse ? 'row-reverse' : 'row',
     flexWrap: props.wrap && 'wrap',
-    justifyContent: ((align) => {
-      switch (align) {
-        case 'left':
-        return 'flex-start';
-        case 'right':
-        return 'flex-end';
-        case 'between':
-        return 'space-between';
-        case 'around':
-        return 'space-around';
-        default:
-        return align;
-      }
-    })(props.align),
-    alignItems: ((valign) => {
-      switch (valign) {
-        case 'top':
-        return 'flex-start';
-        case 'bottom':
-        return 'flex-end';
-        default:
-        return valign;
-      }
-    })(props.valign),
     marginLeft: props.theme.calculateSpacing((props.gutter / 2) * -1),
     marginRight: props.theme.calculateSpacing((props.gutter / 2) * -1),
   }
